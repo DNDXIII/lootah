@@ -1,0 +1,52 @@
+﻿using System;
+using Managers;
+using Shared;
+using UnityEngine;
+
+namespace Gameplay.Shared
+{
+    [RequireComponent(typeof(Collider))]
+    public class Damageable : MonoBehaviour
+    {
+        [SerializeField] private float damageMultiplier = 1f;
+        [SerializeField] private BaseHealth health;
+
+        [SerializeField] private bool isCritical;
+
+        private Collider _collider;
+
+        public BaseHealth Health => health;
+
+        private void Awake()
+        {
+            _collider = GetComponent<Collider>();
+        }
+
+        public void Start()
+        {
+            if (health == null)
+            {
+                health = GetComponent<BaseHealth>();
+                if (health == null)
+                    throw new Exception("No BaseHealth component found on object " + gameObject.name);
+            }
+
+            health.OnDie += OnDie;
+        }
+
+        private void OnDie()
+        {
+            // disable the collider so that the player won't hit this player again
+            _collider.enabled = false;
+        }
+
+        public void TakeDamage(float damage, GameObject damageSource)
+        {
+            health.TakeDamage(damage * damageMultiplier, damageSource);
+            if (isCritical)
+            {
+                EventManager.Broadcast(new CriticalHitEvent());
+            }
+        }
+    }
+}

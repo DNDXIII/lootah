@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: WeaponGroup
+  m_EditorClassIdentifier: 
+  m_GroupName: WeaponGroup
+  m_GUID: 2f36a5ec7df85fd46abd2c7644b4477a
+  m_SerializeEntries:
+  - m_GUID: 4ff392518ded5034aabc95a11b4ff629
+    m_Address: Assets/Prefabs/InventoryPart3/WeaponData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - weaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 293acd2eeddaa6144aeb87923c52a50d, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 463cdda92a5a2584790a368e45268ecc, type: 2}
+    - {fileID: 11400000, guid: 1fd9fd379d2550f4c99df1f8743b1264, type: 2}
