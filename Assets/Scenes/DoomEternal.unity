@@ -171,10 +171,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8197864463855151246, guid: 18ca07840e7d27048966165a11ba9918, type: 3}
-      propertyPath: defaultWeapon.DelayBetweenShots
-      value: 0.15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -15,8 +15,8 @@ MonoBehaviour:
   m_GroupName: WeaponGroup
   m_GUID: 2f36a5ec7df85fd46abd2c7644b4477a
   m_SerializeEntries:
-  - m_GUID: 4ff392518ded5034aabc95a11b4ff629
-    m_Address: Assets/Prefabs/InventoryPart3/WeaponData
+  - m_GUID: 153b33cc1e37c664bb2455930f8075f7
+    m_Address: Assets/Prefabs/InventoryPart3/WeaponData/Weapons
     m_ReadOnly: 0
     m_SerializedLabels:
     - weaponData
