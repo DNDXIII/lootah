@@ -280,7 +280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8700fad257d04b08be0d2c08f6e7cb5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDatabase: {fileID: 11400000, guid: ec718ce1ae9868a459e5c80c73d7bd5f, type: 2}
   weaponCamera: {fileID: 2447770948310048459}
   weaponParentSocket: {fileID: 1671288865852071645}
   defaultWeaponPosition: {fileID: 3216560764216272048}
@@ -403,6 +402,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541994012cc548029ebf1b87d2e4dae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultWeapon:
+    Id: 0
+    Damage: 7
+    DelayBetweenShots: 0.2
+    BulletSpreadAngle: 0
+    ClipSize: 25
+    BulletsPerShot: 1
 --- !u!1 &3261120539156824795
 GameObject:
   m_ObjectHideFlags: 0

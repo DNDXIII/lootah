@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
+using DataHandling;
+using Gameplay.Items;
 using Gameplay.Player;
-using Gameplay.Weapons;
-using Gameplay.Weapons.WeaponGeneration;
 using UnityEngine;
 
-namespace InventoryPart3
+namespace Gameplay.Inventory
 {
     [RequireComponent(typeof(PlayerWeaponsManager))]
     public class PlayerInventory : MonoBehaviour
     {
         private SaveDataManager _saveDataManager;
         private PlayerWeaponsManager _playerWeaponsManager;
+
+        [SerializeField] private WeaponItem defaultWeapon;
 
         private void Start()
         {
@@ -39,18 +40,10 @@ namespace InventoryPart3
         // TODO: REMOVE THIS
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.T))
             {
-                var weaponItem = new WeaponItem
-                {
-                    Id = 0,
-                    Damage = 10,
-                    DelayBetweenShots = 0.5f,
-                    BulletSpreadAngle = 5f,
-                    ClipSize = 30,
-                    BulletsPerShot = 1
-                };
-                AddItem(weaponItem);
+               
+                AddItem(defaultWeapon);
             }
         }
 

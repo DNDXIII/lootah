@@ -1,9 +1,10 @@
 ﻿using System;
+using DataHandling;
 using UnityEngine;
 
 // ReSharper disable InconsistentNaming
 
-namespace InventoryPart3
+namespace Gameplay.Items
 {
     [Serializable]
     public class WeaponItem

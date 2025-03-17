@@ -1,10 +1,11 @@
 ﻿using System;
+using Gameplay.Inventory;
+using Gameplay.Items;
 using Managers;
-using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace InventoryPart3
+namespace UI
 {
     public class UiInventoryManager : MonoBehaviour
     {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Items;
 using Gameplay.Weapons;
 using Gameplay.Weapons.WeaponGeneration;
 using UnityEngine;
@@ -384,7 +385,7 @@ namespace Gameplay.Player
             }
         }
 
-        public void EquipWeapon(InventoryPart3.WeaponItem weaponItem, int indexToEquip)
+        public void EquipWeapon(WeaponItem weaponItem, int indexToEquip)
         {
             if (indexToEquip < 0 || indexToEquip >= _weaponSlots.Length)
             {

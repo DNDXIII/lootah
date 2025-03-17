@@ -31,7 +31,7 @@ namespace Managers.EnemySpawnerManager
         private readonly List<EnemyController> _enemies = new();
         private Transform[] _spawnPoints;
 
-        // TODO: Kinda shit, but it works immediately after they are spawned.
+        // Kinda shit, but it works immediately after they are spawned.
         //  If we used the count they might not have been all spawned yet
         public int EnemyCount => _spawnPoints.Length;
 

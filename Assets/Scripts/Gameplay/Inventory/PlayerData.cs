@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InventoryPart3
+namespace Gameplay.Inventory
 {
     [Serializable]
     public class PlayerData

@@ -1,5 +1,5 @@
-﻿using Gameplay.Player;
-using InventoryPart3;
+﻿using Gameplay.Items;
+using Gameplay.Player;
 using UnityEngine;
 
 namespace Gameplay.Pickups

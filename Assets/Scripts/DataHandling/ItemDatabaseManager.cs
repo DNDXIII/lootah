@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay.Items;
 using Shared;
-using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace InventoryPart3
+namespace DataHandling
 {
     // TODO: Not sure if this can be a singleton, it would be nice to not destroy it on scene change.
     //  But maybe that is something i should do for all singletons 

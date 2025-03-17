@@ -1,5 +1,5 @@
 ﻿using System;
-using InventoryPart3;
+using Gameplay.Items;
 using UnityEngine;
 using UnityEngine.UI;
 

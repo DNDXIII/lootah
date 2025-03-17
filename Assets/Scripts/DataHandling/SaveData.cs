@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay.Inventory;
+using Gameplay.Items;
 
-namespace InventoryPart3
+namespace DataHandling
 {
     [Serializable]
     public class SaveData

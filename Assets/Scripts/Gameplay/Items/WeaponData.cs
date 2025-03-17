@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace InventoryPart3
+namespace Gameplay.Items
 {
-    [CreateAssetMenu(fileName = "Weapon", menuName = "InventoryPart3/Weapon")]
+    [CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapon")]
     public class WeaponData : ScriptableObject
     {
         public int id;

@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Shared;
 using UnityEngine;
 
-namespace InventoryPart3
+namespace DataHandling
 {
     // TODO: Not sure if this can be a singleton, it would be nice to not destroy it on scene change.
     //  But maybe that is something i should do for all singletons
@@ -19,6 +19,19 @@ namespace InventoryPart3
         {
             base.Awake();
             Load();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                Save();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F8))
+            {
+                Load();
+            }
         }
 
         [ContextMenu("Save")]
