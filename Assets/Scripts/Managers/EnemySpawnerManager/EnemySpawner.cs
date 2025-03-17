@@ -31,6 +31,10 @@ namespace Managers.EnemySpawnerManager
         private readonly List<EnemyController> _enemies = new();
         private Transform[] _spawnPoints;
 
+        // TODO: Kinda shit, but it works immediately after they are spawned.
+        //  If we used the count they might not have been all spawned yet
+        public int EnemyCount => _spawnPoints.Length;
+
 
         private void Awake()
         {
@@ -50,12 +54,12 @@ namespace Managers.EnemySpawnerManager
             }
         }
 
-        public int SpawnEnemies()
+
+        public void SpawnEnemies()
         {
             StartCoroutine(SpawnWithDelay());
-            // We can return the number of spawn points since we spawn one enemy per spawn point
-            return _spawnPoints.Length;
         }
+
 
         private IEnumerator SpawnWithDelay()
         {

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using UnityEngine;
+using Shared;
 using UnityEngine.Audio;
 
 namespace Managers
 {
-    public class AudioManager : MonoBehaviour
+    public class AudioManager : Singleton<AudioManager>
     {
         public AudioMixer[] audioMixers;
 

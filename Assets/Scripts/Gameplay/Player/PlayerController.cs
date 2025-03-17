@@ -1,11 +1,8 @@
-﻿using System;
-using Gameplay.Inventory;
-using Gameplay.Shared;
+﻿using Gameplay.Shared;
 using Managers;
 using Shared;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace Gameplay.Player
 {

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Linq;
-using Gameplay.Inventory;
-using Gameplay.Items;
-using Gameplay.Items.Blueprints;
-using Gameplay.Items.Instances;
 using Gameplay.Weapons;
+using Gameplay.Weapons.WeaponGeneration;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,9 +16,6 @@ namespace Gameplay.Player
             PutDownPrevious,
             PutUpNew,
         }
-
-
-        public ItemDatabase itemDatabase;
 
         [Header("References")] [Tooltip("Secondary camera used to avoid seeing weapon go throw geometries")]
         public Camera weaponCamera;
@@ -85,8 +78,6 @@ namespace Gameplay.Player
             ActiveWeaponIndex = -1;
             _weaponSwitchState = WeaponSwitchState.Down;
 
-            PlayerInventoryManager.Instance.OnEquippedChanged += HandleInventoryChanged;
-
             _inputHandler = GetComponent<PlayerInputHandler>();
 
             _playerCharacterController = GetComponent<PlayerController>();
@@ -94,9 +85,6 @@ namespace Gameplay.Player
             SetFov(defaultFov);
 
             OnSwitchedToWeapon += OnWeaponSwitched;
-
-            // Load initial weapons
-            HandleInventoryChanged();
         }
 
 
@@ -142,7 +130,6 @@ namespace Gameplay.Player
                 }
             }
         }
-
 
         // Update various animated features in LateUpdate because it needs to override the animated arm position
         private void LateUpdate()
@@ -345,67 +332,6 @@ namespace Gameplay.Player
             };
         }
 
-        private void HandleInventoryChanged()
-        {
-            // remove all the currently equipped weapons
-            for (int i = 0; i < _weaponSlots.Length; i++)
-            {
-                RemoveWeapon(i);
-            }
-
-            // add all the weapons from the inventory
-            var equippedItems = PlayerInventoryManager.Instance.GetEquippedItems().Select(
-                item => item.BaseItem as WeaponItem).Where(item => item != null).ToArray();
-
-            for (int i = 0; i < equippedItems.Length; i++)
-            {
-                AddWeapon(equippedItems[i], i);
-            }
-        }
-
-        // Adds a weapon to our inventory
-        private void AddWeapon(WeaponItem weaponItem, int slotIndex)
-        {
-            if (slotIndex < 0 || slotIndex >= _weaponSlots.Length)
-            {
-                Debug.LogError("Trying to add weapon to invalid slot index");
-                return;
-            }
-
-            if (_weaponSlots[slotIndex])
-            {
-                Debug.LogError("Trying to add weapon to slot index that already has a weapon");
-                return;
-            }
-
-            // spawn the weapon prefab as child of the weapon socket
-            var weaponPrefab = (itemDatabase.GetItemObject[weaponItem.id] as WeaponBlueprint)?.weaponPrefab;
-            if (!weaponPrefab)
-            {
-                Debug.Log("Weapon prefab not found in item database");
-                return;
-            }
-
-            var weaponInstance = Instantiate(weaponPrefab, weaponParentSocket);
-            weaponInstance.Init(weaponItem.weaponStats);
-            weaponInstance.transform.localPosition = Vector3.zero;
-            weaponInstance.transform.localRotation = Quaternion.identity;
-
-            // Set owner to this gameObject so the weapon can alter projectile/damage logic accordingly
-            weaponInstance.Owner = gameObject;
-            weaponInstance.SourcePrefab = weaponPrefab.gameObject;
-            weaponInstance.ShowWeapon(false);
-
-            _weaponSlots[slotIndex] = weaponInstance;
-
-            // Handle auto-switching to weapon if no weapons currently
-            if (!GetActiveWeapon())
-            {
-                SwitchWeapon();
-            }
-        }
-
-
         private void RemoveWeapon(int slotIndex)
         {
             if (slotIndex < 0 || slotIndex >= _weaponSlots.Length)
@@ -450,11 +376,58 @@ namespace Gameplay.Player
             return null;
         }
 
-        private void OnWeaponSwitched(WeaponController newWeapon)
+        private static void OnWeaponSwitched(WeaponController newWeapon)
         {
             if (newWeapon)
             {
                 newWeapon.ShowWeapon(true);
+            }
+        }
+
+        public void EquipWeapon(InventoryPart3.WeaponItem weaponItem, int indexToEquip)
+        {
+            if (indexToEquip < 0 || indexToEquip >= _weaponSlots.Length)
+            {
+                Debug.LogError("Trying to add weapon to invalid slot index");
+                return;
+            }
+
+            if (_weaponSlots[indexToEquip])
+            {
+                Debug.Log("Trying to add weapon to slot index that already has a weapon");
+                RemoveWeapon(indexToEquip);
+            }
+
+            var weaponPrefab = weaponItem.Prefab;
+
+            var weaponInstance = Instantiate(weaponPrefab, weaponParentSocket).GetComponent<WeaponController>();
+            if (weaponInstance == null)
+            {
+                throw new Exception("Weapon prefab does not have a WeaponController component");
+            }
+
+            weaponInstance.Init(new WeaponStats
+            {
+                damage = weaponItem.Damage,
+                delayBetweenShots = weaponItem.DelayBetweenShots,
+                bulletSpreadAngle = weaponItem.BulletSpreadAngle,
+                clipSize = weaponItem.ClipSize,
+                bulletsPerShot = weaponItem.BulletsPerShot
+            });
+            weaponInstance.transform.localPosition = Vector3.zero;
+            weaponInstance.transform.localRotation = Quaternion.identity;
+
+            // Set owner to this gameObject so the weapon can alter projectile/damage logic accordingly
+            weaponInstance.Owner = gameObject;
+            weaponInstance.SourcePrefab = weaponPrefab.gameObject;
+            weaponInstance.ShowWeapon(false);
+
+            _weaponSlots[indexToEquip] = weaponInstance;
+
+            // Handle auto-switching to weapon if no weapons currently
+            if (!GetActiveWeapon())
+            {
+                SwitchWeapon();
             }
         }
     }

@@ -43,6 +43,7 @@ namespace Gameplay.Abilities
         private void Start()
         {
             _camera = Camera.main;
+            lineRenderer.enabled = false;
         }
 
         private void Update()

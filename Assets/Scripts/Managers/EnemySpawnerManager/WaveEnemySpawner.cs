@@ -30,7 +30,8 @@ namespace Managers.EnemySpawnerManager
 
             foreach (var enemySpawner in _enemySpawners)
             {
-                _enemyCount += enemySpawner.SpawnEnemies();
+                 enemySpawner.SpawnEnemies();
+                _enemyCount += enemySpawner.EnemyCount;
             }
 
             return _enemyCount;
