@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using DataHandling;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ namespace Gameplay.Items
         public Sprite Sprite => Data.sprite;
         public GameObject Prefab => Data.prefab;
 
+        public bool IsValid => Id != -1;
+
 
         public static WeaponItem FakeWeapon => new()
         {
@@ -33,5 +36,17 @@ namespace Gameplay.Items
             ClipSize = 0,
             BulletsPerShot = 0
         };
+
+        public string GetWeaponStats()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Damage: {Damage}");
+            sb.AppendLine($"Delay Between Shots: {DelayBetweenShots}");
+            sb.AppendLine($"Bullet Spread Angle: {BulletSpreadAngle}");
+            sb.AppendLine($"Clip Size: {ClipSize}");
+            sb.AppendLine($"Bullets Per Shot: {BulletsPerShot}");
+
+            return sb.ToString();
+        }
     }
 }

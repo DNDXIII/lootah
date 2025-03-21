@@ -5,13 +5,13 @@ using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace UI.Inventory
 {
     public class UiInventoryManager : MonoBehaviour
     {
         [SerializeField] private WeaponUiInventorySlot inventorySlotPrefab;
 
-        [SerializeField] private Image[] equippedWeaponSlots;
+        [SerializeField] private WeaponUiEquippedSlot[] equippedWeaponSlots;
 
         [Tooltip("The parent object that will hold all the inventory slots")] [SerializeField]
         private GameObject contentView;
@@ -43,8 +43,8 @@ namespace UI
             var equippedWeapons = _playerInventory.GetEquippedWeapons();
             for (int i = 0; i < equippedWeapons.Length; i++)
             {
-                if (equippedWeapons[i].Id == -1) continue;
-                equippedWeaponSlots[i].sprite = equippedWeapons[i].Sprite;
+                if (!equippedWeapons[i].IsValid) continue;
+                equippedWeaponSlots[i].SetItem(equippedWeapons[i]);
             }
         }
 
