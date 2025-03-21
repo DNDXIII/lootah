@@ -1,17 +1,27 @@
-﻿using Gameplay.Items;
+﻿using Gameplay.Inventory;
+using Gameplay.Items;
 using Gameplay.Player;
+using Managers;
 using UnityEngine;
 
 namespace Gameplay.Pickups
 {
-    [RequireComponent(typeof(Collider))]
-    [RequireComponent(typeof(SpriteRenderer))]
-    public class WeaponPickup : BasePickup
+    public class WeaponPickup : MonoBehaviour
     {
-        [SerializeField] private WeaponItem item;
+        [SerializeField] private AudioClip pickupSound;
+        private WeaponItem _weaponItem;
 
-        protected override void OnPickup(PlayerController playerController) =>
-            Debug.Log("TODO: Change to the new inventory thing");
-        // PlayerInventoryManager.Instance.AddItemToInventory(item);
+        public void SetWeapon(WeaponItem weapon) => _weaponItem = weapon;
+
+        public void OnPickup()
+        {
+            if (pickupSound)
+            {
+                AudioUtility.CreateSfx(pickupSound, transform.position, AudioUtility.AudioGroups.Pickup, 0f);
+            }
+
+            ActorManager.Instance.Player.GetComponent<PlayerInventory>().AddWeapon(_weaponItem);
+            Destroy(gameObject);
+        }
     }
 }

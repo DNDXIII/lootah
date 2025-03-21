@@ -395,7 +395,6 @@ namespace Gameplay.Player
 
             if (_weaponSlots[indexToEquip])
             {
-                Debug.Log("Trying to add weapon to slot index that already has a weapon");
                 RemoveWeapon(indexToEquip);
             }
 

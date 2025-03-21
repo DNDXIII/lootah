@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Shared;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Managers.EnemySpawnerManager
 {
@@ -10,6 +12,12 @@ namespace Managers.EnemySpawnerManager
     {
         [SerializeField] private float delayAfterWave = 1f;
         [SerializeField] private float delayBeforeFirstWave = 3f;
+
+        [Tooltip("If -1, will spawn waves indefinitely")] [SerializeField]
+        private int maxWaves = -1;
+
+        [SerializeField] private UnityEvent onWavesEnd;
+
 
         [Header("UI fields")] [SerializeField] private TextMeshProUGUI waveText;
         [SerializeField] private TextMeshProUGUI enemiesLeftText;
@@ -58,6 +66,12 @@ namespace Managers.EnemySpawnerManager
 
         private void OnWaveEnd()
         {
+            if (maxWaves != -1 && _waveCount >= maxWaves)
+            {
+                onWavesEnd.Invoke();
+                return;
+            }
+
             Invoke(nameof(SpawnWave), delayAfterWave);
         }
 

@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1286c50d49d3465180be564e22fce7e8, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
+  id: 0
   itemName: pistol
   description: just a pistola
   sprite: {fileID: 1024518037, guid: aa36437f93ecb3e48800ef2d9f046fde, type: 3}
   prefab: {fileID: 4227961463163621887, guid: 056eff8c64eb0384d8ca5d5e3cd355f7, type: 3}
+  damage: 6
+  delayBetweenShots: 0.5
+  bulletSpreadAngle: 0
+  clipSize: 8
+  bulletsPerShot: 1
+  possibleModifiers:
+  - {fileID: 11400000, guid: cd2302c20b1e41140abed937cebb34d4, type: 2}

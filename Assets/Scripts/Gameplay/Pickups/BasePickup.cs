@@ -18,7 +18,10 @@ namespace Gameplay.Pickups
         private void Awake()
         {
             GetComponent<Collider>().isTrigger = true;
-            GetComponent<SpriteRenderer>().sprite = sprite;
+            if (sprite != null)
+            {
+                GetComponent<SpriteRenderer>().sprite = sprite;
+            }
 
             _startPosition = transform.position;
         }

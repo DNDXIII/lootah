@@ -132,7 +132,7 @@ namespace InputSystem
             interact = valueIsPressed;
         }
 
-        public void SetCursorState(bool newState)
+        private static void SetCursorState(bool newState)
         {
             Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
         }

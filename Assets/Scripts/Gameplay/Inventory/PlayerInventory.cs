@@ -43,7 +43,7 @@ namespace Gameplay.Inventory
             if (Input.GetKeyDown(KeyCode.T))
             {
                
-                AddItem(defaultWeapon);
+                AddWeapon(defaultWeapon);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Gameplay.Inventory
             }
         }
 
-        public void AddItem(WeaponItem weaponItem)
+        public void AddWeapon(WeaponItem weaponItem)
         {
             _saveDataManager.SaveData.inventory.Add(weaponItem);
         }
