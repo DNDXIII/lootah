@@ -1,11 +1,12 @@
 ﻿using System;
 using Gameplay.Items;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class WeaponUiInventorySlot : MonoBehaviour
+    public class WeaponUiInventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         private Action<WeaponItem, int> _onEquipWeapon;
         private Action<WeaponItem> _onDropWeapon;
@@ -61,6 +62,16 @@ namespace UI
             _weaponItem = weaponItem;
             image.sprite = _weaponItem.Sprite;
             weaponNameText.text = _weaponItem.Name;
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            TooltipManager.Instance.ShowTooltip(_weaponItem.GetWeaponStats());
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            TooltipManager.Instance.HideTooltip();
         }
     }
 }
