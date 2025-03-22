@@ -25,6 +25,15 @@ namespace UI.Inventory
             {
                 throw new Exception("PlayerInventory not found in scene");
             }
+
+            if (Application.isEditor)
+            {
+                Invoke(nameof(UpdateContentView), 1);
+            }
+            else
+            {
+                UpdateContentView();
+            }
         }
 
         private void UpdateContentView()

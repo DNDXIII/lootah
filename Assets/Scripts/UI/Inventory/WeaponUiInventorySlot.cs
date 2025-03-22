@@ -40,7 +40,7 @@ namespace UI
 
         private WeaponItem _weaponItem;
 
-        private void Start()
+        private void Awake()
         {
             dropDownPanel.SetActive(false);
             dropButton.onClick.AddListener(ToggleDropdown);
