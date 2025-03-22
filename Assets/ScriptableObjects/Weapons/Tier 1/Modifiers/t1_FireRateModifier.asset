@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 188403ad07884775805af3b3cf3d9716, type: 3}
-  m_Name: ClipSizeModifier
+  m_Script: {fileID: 11500000, guid: 89c4a2eb03424447b15761a10fdbe64e, type: 3}
+  m_Name: t1_FireRateModifier
   m_EditorClassIdentifier: 
-  minAdditiveValue: 2
-  maxAdditiveValue: 6
+  minAdditiveValue: 0
+  maxAdditiveValue: 0.2

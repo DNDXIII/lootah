@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89c4a2eb03424447b15761a10fdbe64e, type: 3}
-  m_Name: FireRateModifier
+  m_Name: t2_FireRateModifier
   m_EditorClassIdentifier: 
   minAdditiveValue: 0
   maxAdditiveValue: 0.2

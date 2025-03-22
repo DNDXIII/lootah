@@ -1927,7 +1927,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1968,6 +1968,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 208736244}
     m_Modifications:
     - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
@@ -1983,6 +1987,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -7.2
       objectReference: {fileID: 0}
+    - target: {fileID: 3165166219434177801, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: spawnSfx
       value: 
@@ -2106,6 +2114,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 208736244}
     m_Modifications:
     - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: m_Name
       value: EnemySpawner (1)
       objectReference: {fileID: 0}
@@ -2121,6 +2133,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -57
       objectReference: {fileID: 0}
+    - target: {fileID: 3165166219434177801, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: spawnSfx
       value: 
@@ -2937,7 +2953,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4870,7 +4886,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -6319,6 +6335,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1632793422}
     m_Modifications:
     - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
@@ -6334,6 +6354,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -40.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3165166219434177801, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: spawnSfx
       value: 
@@ -7735,7 +7759,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14689,7 +14713,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -15217,7 +15241,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -15258,6 +15282,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1632793422}
     m_Modifications:
     - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: m_Name
       value: EnemySpawner (2)
       objectReference: {fileID: 0}
@@ -15273,6 +15301,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -5.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3165166219434177801, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: spawnSfx
       value: 
@@ -15737,7 +15769,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -16815,6 +16847,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1632793422}
     m_Modifications:
     - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: m_Name
       value: EnemySpawner (1)
       objectReference: {fileID: 0}
@@ -16830,6 +16866,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -57
       objectReference: {fileID: 0}
+    - target: {fileID: 3165166219434177801, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: spawnSfx
       value: 
@@ -16942,7 +16982,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -26098,7 +26138,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -27427,6 +27467,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1212331460}
     m_Modifications:
     - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: m_Name
       value: EnemySpawner (1)
       objectReference: {fileID: 0}
@@ -27442,6 +27486,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -57
       objectReference: {fileID: 0}
+    - target: {fileID: 3165166219434177801, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: spawnSfx
       value: 
@@ -27554,7 +27602,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -28495,6 +28543,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1212331460}
     m_Modifications:
     - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 536945822493338509, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
@@ -28510,6 +28562,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -33
       objectReference: {fileID: 0}
+    - target: {fileID: 3165166219434177801, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: spawnSfx
       value: 
@@ -32970,6 +33026,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -38.45
       objectReference: {fileID: 0}
+    - target: {fileID: 3165166219434177801, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: spawnSfx
       value: 
@@ -33099,7 +33159,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -37937,7 +37997,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (3)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -38147,7 +38207,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45741,7 +45801,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -46281,7 +46341,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

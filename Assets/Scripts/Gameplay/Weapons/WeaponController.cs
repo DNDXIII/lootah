@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
+using Gameplay.Effects;
 using Gameplay.Shared;
 using Gameplay.Weapons.WeaponGeneration;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -38,10 +38,11 @@ namespace Gameplay.Weapons
         [Tooltip("Defines whether the weapon uses projectiles or hitscan")]
         public WeaponFireMode fireMode = WeaponFireMode.Projectile; // Default to projectile
 
+        [Header("Projectile Settings")]
         [Tooltip("Prefab for the projectile fired by this weapon (if using projectile-based shooting)")]
         public ProjectileBase projectilePrefab;
 
-        [Tooltip("Maximum range for hitscan weapons")]
+        [Header("Hitscan Settings")] [Tooltip("Maximum range for hitscan weapons")]
         public float hitscanRange = 100f;
 
         [Tooltip("Impact effect for hitscan weapons")]
@@ -49,6 +50,9 @@ namespace Gameplay.Weapons
 
         [Tooltip("Blood effect for Hitscan weapons")]
         public GameObject bloodEffectPrefab;
+
+        [Tooltip("Line renderer for hitscan weapons")] [SerializeField]
+        private BulletTrail bulletTrailPrefab;
 
         // RECOIL & SHOOTING EFFECTS
         [Header("Recoil & Effects")] [Tooltip("Recoil force applied to the weapon when shooting")] [Range(0f, 2f)]
@@ -256,6 +260,12 @@ namespace Gameplay.Weapons
                 if (hitEffectPrefab)
                 {
                     Instantiate(hitEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                }
+
+                if (bulletTrailPrefab)
+                {
+                    var bulletTrail = Instantiate(bulletTrailPrefab, weaponMuzzle.position, Quaternion.identity);
+                    bulletTrail.Initialize(weaponMuzzle.position, hit.point);
                 }
             }
         }

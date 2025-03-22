@@ -944,7 +944,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb2079f40ec4a999688f09d4b7a6a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 4942641402308451068}
+  commonColor: {r: 0.52156866, g: 0.52156866, b: 0.52156866, a: 1}
+  uncommonColor: {r: 0.023529412, g: 0, b: 0.5294118, a: 1}
+  rareColor: {r: 0.87058824, g: 0.7764706, b: 0, a: 1}
+  legendaryColor: {r: 1, g: 0.14117648, b: 0, a: 1}
+  weaponIcon: {fileID: 4942641402308451068}
+  backgroundImage: {fileID: 6684172593054214713}
   weaponNameText: {fileID: 2189662448541006834}
   dropDownPanel: {fileID: 6142098881467225238}
   dropButton: {fileID: 5742563629650305720}
@@ -1249,7 +1254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.2264151, b: 0.021402394, a: 1}
+  m_Color: {r: 1, g: 0.13836968, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1286c50d49d3465180be564e22fce7e8, type: 3}
+  m_Name: DecentShotgun
+  m_EditorClassIdentifier: 
+  id: 4
+  itemName: Decent Shotgun
+  description: Finally something decent
+  sprite: {fileID: -967934714, guid: aa36437f93ecb3e48800ef2d9f046fde, type: 3}
+  prefab: {fileID: 4227961463163621887, guid: ac2ad8d1bb134fc4eadc48094b05d3f1, type: 3}
+  damage: 1
+  delayBetweenShots: 0.25
+  bulletSpreadAngle: 8
+  clipSize: 4
+  bulletsPerShot: 6
+  possibleModifiers:
+  - {fileID: 11400000, guid: 3447405ed07c8644fb61f6e2eb36b348, type: 2}
+  - {fileID: 11400000, guid: 4f7c381f1336f414db7e4e6b1c78871e, type: 2}
+  - {fileID: 11400000, guid: 2d1e90c98ba49824e9d97cd9ccef7b5a, type: 2}

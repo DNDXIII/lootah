@@ -2,6 +2,7 @@
 using Gameplay.Items;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
@@ -11,13 +12,29 @@ namespace UI
         private Action<WeaponItem, int> _onEquipWeapon;
         private Action<WeaponItem> _onDropWeapon;
 
-        [Tooltip("Image to display the weapon icon")] [SerializeField]
-        private Image image;
+        [Header("Background Color Configs")] [SerializeField]
+        private Color commonColor;
+
+        [SerializeField] private Color uncommonColor;
+
+        [SerializeField] private Color rareColor;
+
+        [SerializeField] private Color legendaryColor;
+
+        [Header("UI References")]
+        [FormerlySerializedAs("image")]
+        [Tooltip("Image to display the weapon icon")]
+        [SerializeField]
+        private Image weaponIcon;
+
+        [SerializeField] private Image backgroundImage;
 
         [Tooltip("Text to display the weapon name")] [SerializeField]
         private TMPro.TextMeshProUGUI weaponNameText;
 
-        [SerializeField] private GameObject dropDownPanel;
+        [Header("Dropdown References")] [SerializeField]
+        private GameObject dropDownPanel;
+
         [SerializeField] private Button dropButton;
         [SerializeField] private Button equip1Button, equip2Button, dropWeaponButton;
 
@@ -62,8 +79,21 @@ namespace UI
         public void SetItem(WeaponItem weaponItem)
         {
             _weaponItem = weaponItem;
-            image.sprite = _weaponItem.Sprite;
+            weaponIcon.sprite = _weaponItem.Sprite;
             weaponNameText.text = _weaponItem.Name;
+            backgroundImage.color = GetBackgroundColor(_weaponItem);
+        }
+
+        private Color GetBackgroundColor(WeaponItem weaponItem)
+        {
+            return weaponItem.Rarity switch
+            {
+                WeaponRarity.Common => commonColor,
+                WeaponRarity.Uncommon => uncommonColor,
+                WeaponRarity.Rare => rareColor,
+                WeaponRarity.Legendary => legendaryColor,
+                _ => commonColor
+            };
         }
 
         public void OnPointerEnter(PointerEventData eventData)

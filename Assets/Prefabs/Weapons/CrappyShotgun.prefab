@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7904577340068245525}
   - component: {fileID: 3784055549389449713}
   m_Layer: 2
-  m_Name: Shotgun
+  m_Name: CrappyShotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,6 +182,7 @@ MonoBehaviour:
   hitscanRange: 100
   hitEffectPrefab: {fileID: 7176868523148172685, guid: f7cf87de353b6ec4a8130fe60e904b45, type: 3}
   bloodEffectPrefab: {fileID: 3494450149275129416, guid: 37638f31818cdf048a341533c6cea9a2, type: 3}
+  bulletTrailPrefab: {fileID: -443232460496753036, guid: 2b03f80799689d34893be01d81f0285b, type: 3}
   recoilForce: 1
   shootSfx: {fileID: 8300000, guid: c784c892910b7cf45902c9197875cf05, type: 3}
   reloadSfx: {fileID: 8300000, guid: d218963ae7ff8a94eaabd82792c2881d, type: 3}
