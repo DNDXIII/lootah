@@ -404,10 +404,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultWeapon:
     Id: 0
-    Damage: 7
-    DelayBetweenShots: 0.2
-    BulletSpreadAngle: 0
-    ClipSize: 25
+    Damage: 2
+    DelayBetweenShots: 0.5
+    BulletSpreadAngle: 4
+    ClipSize: 6
     BulletsPerShot: 1
 --- !u!1 &3261120539156824795
 GameObject:

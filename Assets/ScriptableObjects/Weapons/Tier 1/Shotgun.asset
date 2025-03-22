@@ -17,9 +17,12 @@ MonoBehaviour:
   description: just a pistola
   sprite: {fileID: -967934714, guid: aa36437f93ecb3e48800ef2d9f046fde, type: 3}
   prefab: {fileID: 4227961463163621887, guid: ac2ad8d1bb134fc4eadc48094b05d3f1, type: 3}
-  damage: 3
+  damage: 1
   delayBetweenShots: 0.25
   bulletSpreadAngle: 2
   clipSize: 4
   bulletsPerShot: 6
-  possibleModifiers: []
+  possibleModifiers:
+  - {fileID: 11400000, guid: cd2302c20b1e41140abed937cebb34d4, type: 2}
+  - {fileID: 11400000, guid: 939c8574fb9ba2a47a43b24ab6b21138, type: 2}
+  - {fileID: 11400000, guid: 9904ca1412af9604f8653163c5bf881d, type: 2}

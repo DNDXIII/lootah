@@ -7,8 +7,6 @@ using UnityEngine;
 
 namespace DataHandling
 {
-    // TODO: Not sure if this can be a singleton, it would be nice to not destroy it on scene change.
-    //  But maybe that is something i should do for all singletons
     public class SaveDataManager : Singleton<SaveDataManager>
     {
         private const string SavePath = "/saveFile.save";
@@ -25,12 +23,18 @@ namespace DataHandling
         {
             if (Input.GetKeyDown(KeyCode.F5))
             {
+                Debug.Log("Saved");
                 Save();
             }
 
             if (Input.GetKeyDown(KeyCode.F8))
             {
                 Load();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F9))
+            {
+                Clear();
             }
         }
 

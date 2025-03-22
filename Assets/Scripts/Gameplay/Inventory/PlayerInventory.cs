@@ -31,7 +31,7 @@ namespace Gameplay.Inventory
             }
             else
             {
-                // We need to wait a frame to make sure the player weapons manager is setup
+                // We need to wait a frame to make sure the player weapons manager is set up
                 Invoke(nameof(SetupInitialWeapons), 1);
             }
         }

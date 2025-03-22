@@ -10,7 +10,7 @@ namespace UI.Inventory
         [Tooltip("Image to display the weapon icon")] [SerializeField]
         private Image image;
 
-        private WeaponItem _weaponItem;
+        private WeaponItem _weaponItem = WeaponItem.FakeWeapon;
 
         public void SetItem(WeaponItem weaponItem)
         {

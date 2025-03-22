@@ -139,14 +139,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b00cb29453a4f3cacb3856f2cd9ed0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathDelay: 0
   baseExperience: 10
+  deathDelay: 0
+  health: {fileID: 6381467514435746051}
+  damagedColor: {r: 1, g: 0, b: 0, a: 1}
   deathSfx:
   - {fileID: 8300000, guid: badc4f192a916274b8a65e1215862dce, type: 3}
   sightSfx: {fileID: 8300000, guid: bad3b9d84ab694f45902ae1c06de8eca, type: 3}
-  health: {fileID: 6381467514435746051}
   rbCollider: {fileID: 0}
-  damagedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1335752860595125053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,12 +223,13 @@ MonoBehaviour:
   attackDuration: 1.5
   attackDamage: 10
   attackSfx: {fileID: 8300000, guid: 9c43320337662c04aa6045df1a97e92d, type: 3}
-  weaponMuzzle: {fileID: 7634090452109841884}
   projectilePrefab: {fileID: 8860548218057244454, guid: a114c5bbbf0b21a4b962cce0962ad099, type: 3}
   numberOfProjectiles: 10
-  delayBetweenProjectiles: 0.1
   weaponSpreadAngle: 2
   delayBeforeFirstShot: 0.5
+  delayBetweenProjectiles: 0.1
+  weaponMuzzle: {fileID: 7634090452109841884}
+  chargeSfx: {fileID: 0}
 --- !u!114 &1650035935147691745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53310e935c24489b17a7efae012889e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 20
 --- !u!114 &8859043873588144973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMultiplier: 1
   health: {fileID: 7395926627208702183}
+  isCritical: 0
 --- !u!1 &1564474821845612252
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53310e935c24489b17a7efae012889e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 20
 --- !u!114 &2775604652649426107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMultiplier: 1
   health: {fileID: 7420413213001435014}
+  isCritical: 0
 --- !u!1 &2884544227510157393
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageMultiplier: 1
   health: {fileID: 6381467514435746051}
+  isCritical: 0
 --- !u!114 &6381467514435746051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,7 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53310e935c24489b17a7efae012889e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 30
 --- !u!1 &4153833227910702889
 GameObject:
   m_ObjectHideFlags: 0

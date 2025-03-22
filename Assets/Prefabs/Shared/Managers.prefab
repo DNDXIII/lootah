@@ -135,11 +135,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3115301242604696425}
+  - component: {fileID: 5775312813006169169}
   - component: {fileID: 3043236921047094158}
   - component: {fileID: 2672416062578066002}
   - component: {fileID: 6924542969931146705}
   - component: {fileID: 3559393980968094660}
-  - component: {fileID: 5775312813006169169}
+  - component: {fileID: 6094298791099085164}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -163,6 +164,18 @@ Transform:
   - {fileID: 213014076903914981}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5775312813006169169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950726106313193431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3e0ae83ed64f39a7ce9443fdbddbf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3043236921047094158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b325969f99546a9b01636df25b2813f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5775312813006169169
+--- !u!114 &6094298791099085164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,9 +239,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 950726106313193431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a3e0ae83ed64f39a7ce9443fdbddbf7, type: 3}
+  m_Script: {fileID: 11500000, guid: bdee4895ab6c4fccba2a6b485c60f4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponPickupPrefab: {fileID: 5031076661795990650, guid: aecebf576c309fb489218facd36ccf87, type: 3}
 --- !u!1 &981374986148099034
 GameObject:
   m_ObjectHideFlags: 0

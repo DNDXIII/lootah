@@ -7,7 +7,7 @@ namespace UI
     {
         public static TooltipManager Instance { get; private set; }
 
-        private GameObject _tooltip;
+        [SerializeField] private RectTransform tooltip;
         private TextMeshProUGUI _tooltipText;
 
         private void Awake()
@@ -17,9 +17,8 @@ namespace UI
                 Instance = this;
 
 
-                _tooltip = transform.GetChild(0).gameObject;
-                _tooltip.SetActive(false);
-                _tooltipText = _tooltip.GetComponentInChildren<TextMeshProUGUI>();
+                tooltip.gameObject.SetActive(false);
+                _tooltipText = tooltip.GetComponentInChildren<TextMeshProUGUI>();
             }
             else
             {
@@ -27,20 +26,23 @@ namespace UI
             }
         }
 
-        private void Update()
+        private void LateUpdate()
         {
-            _tooltip.transform.position = Input.mousePosition;
+            // Offset the tooltip to the right and below the mouse. Use the size of the tooltip to offset it correctly
+            Vector3 offset = new Vector3(tooltip.rect.width / 2, -1 * (tooltip.rect.height / 2), 0f);
+
+            tooltip.transform.position = Input.mousePosition + offset;
         }
 
         public void ShowTooltip(string text)
         {
             _tooltipText.text = text;
-            _tooltip.SetActive(true);
+            tooltip.gameObject.SetActive(true);
         }
 
         public void HideTooltip()
         {
-            _tooltip.SetActive(false);
+            tooltip.gameObject.SetActive(false);
         }
     }
 }

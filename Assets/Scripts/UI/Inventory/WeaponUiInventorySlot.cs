@@ -50,11 +50,13 @@ namespace UI
         private void EquipWeapon(int indexToEquip)
         {
             _onEquipWeapon?.Invoke(_weaponItem, indexToEquip);
+            TooltipManager.Instance.HideTooltip();
         }
 
         private void DropWeapon()
         {
             _onDropWeapon?.Invoke(_weaponItem);
+            TooltipManager.Instance.HideTooltip();
         }
 
         public void SetItem(WeaponItem weaponItem)

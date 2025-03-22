@@ -16,6 +16,7 @@ namespace Gameplay.Items
         public float BulletSpreadAngle;
         public int ClipSize;
         public int BulletsPerShot;
+        public WeaponRarity Rarity;
 
         private WeaponData Data => ItemDatabaseManager.Instance.GetWeaponData(Id);
 
@@ -34,17 +35,18 @@ namespace Gameplay.Items
             DelayBetweenShots = 0,
             BulletSpreadAngle = 0,
             ClipSize = 0,
-            BulletsPerShot = 0
+            BulletsPerShot = 0,
+            Rarity = WeaponRarity.Common
         };
 
         public string GetWeaponStats()
         {
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Name: {Name}");
+            sb.AppendLine($"Rarity: {Rarity}");
             sb.AppendLine($"Damage: {Damage}");
             sb.AppendLine($"Delay Between Shots: {DelayBetweenShots}");
-            sb.AppendLine($"Bullet Spread Angle: {BulletSpreadAngle}");
             sb.AppendLine($"Clip Size: {ClipSize}");
-            sb.AppendLine($"Bullets Per Shot: {BulletsPerShot}");
 
             return sb.ToString();
         }
