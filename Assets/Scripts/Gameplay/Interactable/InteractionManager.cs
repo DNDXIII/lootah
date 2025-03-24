@@ -1,4 +1,5 @@
 ﻿using Gameplay.Player;
+using Managers;
 using UI;
 using UnityEngine;
 
@@ -26,13 +27,26 @@ namespace Gameplay.Interactable
         {
             if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hit,
                     interactionDistance,
-                    interactableLayer) && hit.collider.TryGetComponent(out Interactable interactable))
+                    interactableLayer))
             {
-                InteractionTextManager.Instance.ShowInteractionText(interactable.GetInteractionText());
-
-                if (_playerInputHandler.GetInteractInput())
+                // TODO: Refactor this to use just the interface dude
+                if (hit.collider.TryGetComponent(out Interactable interactable))
                 {
-                    interactable.Interact();
+                    InteractionTextManager.Instance.ShowInteractionText(interactable.GetInteractionText());
+
+                    if (_playerInputHandler.GetInteractInput())
+                    {
+                        interactable.Interact();
+                    }
+                }
+                else if (hit.collider.TryGetComponent(out IInteractable iinteractable))
+                {
+                    InteractionTextManager.Instance.ShowInteractionText(iinteractable.GetInteractionText());
+
+                    if (_playerInputHandler.GetInteractInput())
+                    {
+                        iinteractable.Interact(ActorManager.Instance.Player);
+                    }
                 }
             }
             else
