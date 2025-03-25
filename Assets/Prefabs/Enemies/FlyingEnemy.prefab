@@ -221,10 +221,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsActive: 1
-  delayAfterActivation: 0
+  delayAfterActivation: 1
   startsFollowingPlayer: 1
   detectionRadius: 50
   detectionTransform: {fileID: 6877396150310046737}
+  detectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 193
   angularSpeed: 5
   moveSpeed: 2.5
   spawnDelay: 1

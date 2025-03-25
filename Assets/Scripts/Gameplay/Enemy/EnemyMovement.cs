@@ -33,6 +33,9 @@ namespace Gameplay.Enemy
         [Tooltip("Transform from which the enemy will detect the player.")] [SerializeField]
         private Transform detectionTransform;
 
+        [Tooltip("Layer mask for the detection raycast.")] [SerializeField]
+        private LayerMask detectionLayerMask;
+
         [Tooltip("Time interval for updating the enemy's line of sight.")]
         private const float LosUpdateInterval = 0.5f;
 
@@ -194,7 +197,7 @@ namespace Gameplay.Enemy
             var detectionOrigin = detectionTransform ? detectionTransform.position : transform.position;
 
             _lastLosResult = Physics.Raycast(detectionOrigin,
-                                 playerPosition - detectionOrigin, out var hit) &&
+                                 playerPosition - detectionOrigin, out var hit, detectionRadius, detectionLayerMask) &&
                              hit.collider.CompareTag("Player");
 
             return _lastLosResult;

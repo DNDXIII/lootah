@@ -190,7 +190,7 @@ MonoBehaviour:
   reloadTime: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 91
+    m_Bits: 73
 --- !u!1 &6298033569619689672
 GameObject:
   m_ObjectHideFlags: 0

@@ -255,6 +255,9 @@ MonoBehaviour:
   startsFollowingPlayer: 1
   detectionRadius: 50
   detectionTransform: {fileID: 0}
+  detectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 193
   angularSpeed: 5
   moveSpeed: 5
   spawnDelay: 1
