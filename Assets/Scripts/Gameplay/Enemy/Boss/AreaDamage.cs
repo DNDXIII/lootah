@@ -57,7 +57,7 @@ namespace Gameplay.Enemy.Boss
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Player")) return;
-            other.GetComponent<Damageable>().TakeDamage(_damage, _owner);
+            other.GetComponent<Damageable>().TakeDamage(_damage, _owner, false);
             // Disable the collider after dealing damage, so the player doesn't take damage multiple times
             _areaCollider.enabled = false;
         }

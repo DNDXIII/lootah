@@ -45,6 +45,9 @@ namespace Gameplay.Enemy
         [Tooltip("Speed at which the enemy moves towards the target.")] [SerializeField]
         private float moveSpeed = 5f;
 
+        [Tooltip("Acceleration of the enemy.")] [SerializeField]
+        private float acceleration = 15f;
+
         [Tooltip("Delay before the enemy starts moving after spawning.")] [SerializeField]
         private float spawnDelay = 2f;
 
@@ -83,6 +86,7 @@ namespace Gameplay.Enemy
 
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _navMeshAgent.speed = moveSpeed;
+            _navMeshAgent.acceleration = acceleration;
             _navMeshAgent.angularSpeed = angularSpeed;
         }
 
@@ -106,7 +110,8 @@ namespace Gameplay.Enemy
             switch (newState)
             {
                 case AIState.Idle:
-                    _animator.SetBool(IsMoving, false);
+                    _animator?.SetBool(IsMoving, false);
+
                     break;
                 case AIState.Follow:
                     if (_currentState == AIState.Idle)
@@ -116,7 +121,9 @@ namespace Gameplay.Enemy
 
                     // Reset the random move timer
                     _hasRandomlyMoved = false;
-                    _animator.SetBool(IsMoving, true);
+
+                    _animator?.SetBool(IsMoving, true);
+
                     _navMeshAgent.isStopped = false;
                     break;
                 case AIState.Attack:

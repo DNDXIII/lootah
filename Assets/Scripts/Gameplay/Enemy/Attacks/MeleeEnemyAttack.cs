@@ -42,7 +42,7 @@ namespace Gameplay.Enemy.Attacks
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Player")) return;
-            other.GetComponent<Damageable>().TakeDamage(attackDamage, EnemyController.gameObject);
+            other.GetComponent<Damageable>().TakeDamage(attackDamage, EnemyController.gameObject, false);
 
 
             // Disable the collider after dealing damage, so the player doesn't take damage multiple times

@@ -219,7 +219,7 @@ namespace Gameplay.Weapons
             else if (collisionCollider.TryGetComponent(out Damageable damageable))
             {
                 // point damage
-                damageable.TakeDamage(damage, m_ProjectileBase.Owner);
+                damageable.TakeDamage(damage, m_ProjectileBase.Owner, true);
             }
 
             // impact vfx
@@ -250,7 +250,7 @@ namespace Gameplay.Weapons
             {
                 if (col.TryGetComponent(out Damageable damageable))
                 {
-                    damageable.TakeDamage(damage, m_ProjectileBase.Owner);
+                    damageable.TakeDamage(damage, m_ProjectileBase.Owner, true);
                 }
             }
         }

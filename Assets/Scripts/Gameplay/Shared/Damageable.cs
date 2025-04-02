@@ -40,10 +40,10 @@ namespace Gameplay.Shared
             _collider.enabled = false;
         }
 
-        public void TakeDamage(float damage, GameObject damageSource)
+        public void TakeDamage(float damage, GameObject damageSource, bool canCrit)
         {
             health.TakeDamage(damage * damageMultiplier, damageSource);
-            if (isCritical)
+            if (isCritical && canCrit)
             {
                 EventManager.Broadcast(new CriticalHitEvent());
             }

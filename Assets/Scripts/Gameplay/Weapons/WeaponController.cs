@@ -245,11 +245,22 @@ namespace Gameplay.Weapons
                 Vector3 shotDirection = _camera.transform.forward;
 
                 if (!Physics.Raycast(_camera.transform.position, shotDirection, out var hit, hitscanRange,
-                        layerMask)) continue;
+                        layerMask))
+                {
+                    if (bulletTrailPrefab)
+                    {
+                        var bulletTrail = Instantiate(bulletTrailPrefab, weaponMuzzle.position, Quaternion.identity);
+                        // Didn't hit so we just show the bullet trail going into the distance
+                        bulletTrail.Initialize(weaponMuzzle.position,
+                            weaponMuzzle.position + shotDirection * hitscanRange);
+                    }
+
+                    continue;
+                }
 
                 if (hit.collider.TryGetComponent(out Damageable damageable))
                 {
-                    damageable.TakeDamage(_weaponStats.damage, Owner);
+                    damageable.TakeDamage(_weaponStats.damage, Owner, true);
                     if (bloodEffectPrefab)
                     {
                         Instantiate(bloodEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));

@@ -27,7 +27,7 @@ namespace Gameplay.Abilities.Grenades
             {
                 if (hit.TryGetComponent(out Damageable damageable))
                 {
-                    damageable.TakeDamage(damage, ActorManager.Instance.Player.gameObject);
+                    damageable.TakeDamage(damage, ActorManager.Instance.Player.gameObject, false);
                 }
             }
 

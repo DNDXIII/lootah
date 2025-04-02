@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DoomEternal.unity
     guid: 22a9037c369e8bf4b94cf056f47bb6af
+  - enabled: 1
+    path: Assets/Scenes/BigLevel.unity
+    guid: e10ad4433d84c154a9ed021c343e736b
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 82a84be349028a3478c43d976b2672f3, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: c3427ea8cad8cdf4cb47d4516aeff89b, type: 2}

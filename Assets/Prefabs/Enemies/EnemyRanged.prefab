@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsActive: 1
-  delayAfterActivation: 0
+  delayAfterActivation: 1
   startsFollowingPlayer: 1
   detectionRadius: 50
   detectionTransform: {fileID: 0}
@@ -297,9 +297,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 193
   angularSpeed: 5
-  moveSpeed: 5
+  moveSpeed: 10
+  acceleration: 15
   spawnDelay: 1
-  randomMoveRadius: 8
+  randomMoveRadius: 15
   attackRange: 40
   attackMovementDelay: 1
   enemyAttack: {fileID: 6136583475227163026}
@@ -338,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53310e935c24489b17a7efae012889e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 13
 --- !u!114 &2558819490343495606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,8 +355,12 @@ MonoBehaviour:
   dropChance: 0.05
   lootTable:
   - weaponData: {fileID: 11400000, guid: 148d7e271fc253d4b8934c680ef64124, type: 2}
-    weight: 1
+    weight: 5
   - weaponData: {fileID: 11400000, guid: 4fbcc09f34c83d74185a7d6bcb73abd2, type: 2}
+    weight: 5
+  - weaponData: {fileID: 11400000, guid: a99007cc02ff01842a12f94bc07a5b49, type: 2}
+    weight: 5
+  - weaponData: {fileID: 11400000, guid: 2c75d066816ea674e927e10b8e721ff1, type: 2}
     weight: 1
 --- !u!1 &6333574853922384119
 GameObject:

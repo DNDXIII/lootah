@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseExperience: 10
   deathDelay: 10
-  health: {fileID: 0}
+  health: {fileID: 2217038810148228827}
   damagedColor: {r: 1, g: 0, b: 0, a: 1}
   deathSfx:
   - {fileID: 8300000, guid: 8c3e4151700ae35468869e7ee5571865, type: 3}
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startsActive: 1
-  delayAfterActivation: 0
+  delayAfterActivation: 1
   startsFollowingPlayer: 1
   detectionRadius: 60
   detectionTransform: {fileID: 0}
@@ -226,9 +226,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 193
   angularSpeed: 5
-  moveSpeed: 8
+  moveSpeed: 10
+  acceleration: 30
   spawnDelay: 1
-  randomMoveRadius: 5
+  randomMoveRadius: 3
   attackRange: 2
   attackMovementDelay: 1
   enemyAttack: {fileID: 3080765499963552080}
@@ -283,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53310e935c24489b17a7efae012889e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 10
 --- !u!114 &-1695901448896157374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,8 +300,12 @@ MonoBehaviour:
   dropChance: 0.05
   lootTable:
   - weaponData: {fileID: 11400000, guid: 148d7e271fc253d4b8934c680ef64124, type: 2}
-    weight: 1
+    weight: 5
   - weaponData: {fileID: 11400000, guid: 4fbcc09f34c83d74185a7d6bcb73abd2, type: 2}
+    weight: 5
+  - weaponData: {fileID: 11400000, guid: a99007cc02ff01842a12f94bc07a5b49, type: 2}
+    weight: 5
+  - weaponData: {fileID: 11400000, guid: 2c75d066816ea674e927e10b8e721ff1, type: 2}
     weight: 1
 --- !u!1 &5703360941744091410
 GameObject:

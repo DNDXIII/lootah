@@ -53,7 +53,7 @@ namespace Gameplay.Abilities
 
                 if (hit.transform.TryGetComponent(out Damageable damageable))
                 {
-                    damageable.TakeDamage(damage, ActorManager.Instance.Player.gameObject);
+                    damageable.TakeDamage(damage, ActorManager.Instance.Player.gameObject, true);
                     pierceCount++;
                 }
 

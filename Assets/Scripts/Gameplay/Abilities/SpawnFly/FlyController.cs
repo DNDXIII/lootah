@@ -102,7 +102,7 @@ namespace Gameplay.Abilities.SpawnFly
 
             if (other.TryGetComponent(out Damageable damageable))
             {
-                damageable.TakeDamage(damage, ActorManager.Instance.Player.gameObject);
+                damageable.TakeDamage(damage, ActorManager.Instance.Player.gameObject, false);
             }
 
             Destroy(gameObject);

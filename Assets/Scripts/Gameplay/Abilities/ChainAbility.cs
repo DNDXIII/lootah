@@ -27,7 +27,6 @@ namespace Gameplay.Abilities
         [SerializeField]
         private float cooldownTime = 2f;
 
-        private float lastAttackTime = -Mathf.Infinity;
 
         [FormerlySerializedAs("enemyLayer")]
         [Header("Layer Settings")]
@@ -38,6 +37,7 @@ namespace Gameplay.Abilities
         [Header("Effects")] [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private AudioClip impactSfx;
 
+        private float _lastAttackTime = -Mathf.Infinity;
         private Camera _camera;
 
         private void Start()
@@ -49,10 +49,10 @@ namespace Gameplay.Abilities
         private void Update()
         {
             // TODO: use actual input system
-            if (Input.GetMouseButtonDown(1) && Time.time >= lastAttackTime + cooldownTime)
+            if (Input.GetMouseButtonDown(1) && Time.time >= _lastAttackTime + cooldownTime)
             {
                 PerformChainLightning();
-                lastAttackTime = Time.time; // Update last attack time
+                _lastAttackTime = Time.time; // Update last attack time
             }
         }
 
@@ -74,7 +74,7 @@ namespace Gameplay.Abilities
 
                 foreach (Damageable enemy in hitDamageables)
                 {
-                    enemy.TakeDamage(damage, ActorManager.Instance.Player.gameObject);
+                    enemy.TakeDamage(damage, ActorManager.Instance.Player.gameObject, false);
                 }
             }
             else
