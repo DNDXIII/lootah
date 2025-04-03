@@ -1,7 +1,6 @@
 ﻿using InputSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 namespace UI
 {
@@ -9,7 +8,7 @@ namespace UI
     {
         [SerializeField] private GameObject inventoryMenu;
         [SerializeField] private GameObject hud;
-        [SerializeField] private GameObject pauseMenu;
+        [SerializeField] private PauseMenuUiToolkit pauseMenuUiToolkit;
 
         private PlayerInputsManager _playerInputsManager;
         private bool _isInventoryOpen;
@@ -22,8 +21,8 @@ namespace UI
             _playerInputsManager = FindFirstObjectByType<PlayerInputsManager>();
 
             _inputManager = new InputManager();
-            _inputManager.UI.Inventory.performed += OnInventory;
-            _inputManager.UI.Pause.performed += OnPause;
+            _inputManager.UI.Inventory.performed += _ => OnToggleInventory();
+            _inputManager.UI.Pause.performed += _ => OnTogglePause();
         }
 
 
@@ -31,29 +30,31 @@ namespace UI
         {
             hud.SetActive(true);
             inventoryMenu.SetActive(false);
-            pauseMenu.SetActive(false);
+            pauseMenuUiToolkit.SetActive(false);
+
+            pauseMenuUiToolkit.OnResume += OnTogglePause;
         }
 
-        private void OnPause(InputAction.CallbackContext context)
+        private void OnTogglePause()
         {
             if (!_isPauseMenuOpen && !_isInventoryOpen)
             {
                 Pause();
                 _isPauseMenuOpen = true;
-                pauseMenu.SetActive(!pauseMenu.activeSelf);
-                hud.SetActive(!pauseMenu.activeSelf);
+                pauseMenuUiToolkit.SetActive(true);
+                hud.SetActive(false);
             }
 
             else if (_isPauseMenuOpen)
             {
-                pauseMenu.SetActive(!pauseMenu.activeSelf);
-                hud.SetActive(!pauseMenu.activeSelf);
+                hud.SetActive(true);
+                pauseMenuUiToolkit.SetActive(false);
                 _isPauseMenuOpen = false;
                 Resume();
             }
         }
 
-        private void OnInventory(InputAction.CallbackContext context)
+        private void OnToggleInventory()
         {
             if (!_isInventoryOpen && !_isPauseMenuOpen)
             {
@@ -100,6 +101,8 @@ namespace UI
         {
             // Disable the input actions to avoid issues when the object is inactive
             _inputManager.UI.Disable();
+            // Unregister the event to avoid memory leaks
+            pauseMenuUiToolkit.OnResume -= OnTogglePause;
         }
     }
 }

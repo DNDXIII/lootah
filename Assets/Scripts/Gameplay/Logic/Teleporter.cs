@@ -1,4 +1,5 @@
 ﻿using Gameplay.Shared;
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ namespace Gameplay.Logic
 
         public void Teleport()
         {
-            SceneLoader.Instance.LoadLevel(sceneToLoad);
+            SceneLoaderManager.Instance.LoadLevel(sceneToLoad);
         }
     }
 }

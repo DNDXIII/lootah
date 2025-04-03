@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Gameplay.Shared
+namespace Managers
 {
-    public class SceneLoader : Singleton<SceneLoader>
+    public class SceneLoaderManager : Singleton<SceneLoaderManager>
     {
         [SerializeField] private GameObject loadingScreen;
         [SerializeField] private Slider progressBar;
