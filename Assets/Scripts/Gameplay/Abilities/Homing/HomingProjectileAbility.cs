@@ -1,4 +1,5 @@
 ﻿using Gameplay.Shared;
+using Managers;
 using UnityEngine;
 
 namespace Gameplay.Abilities.Homing
@@ -12,8 +13,14 @@ namespace Gameplay.Abilities.Homing
         [SerializeField] private LayerMask hittableLayers;
         [SerializeField] private float cooldownTime = 2f;
 
+        [Header("Effects")] [Tooltip("Audio clip to play once ability is used.")] [SerializeField]
+        private AudioClip abilitySound;
+
         [Header("References")] [SerializeField]
         private HomingProjectile projectilePrefab;
+
+        [SerializeField] private Transform spawnPoint;
+
 
         private Camera _camera;
         private float _lastAttackTime = -Mathf.Infinity;
@@ -36,13 +43,27 @@ namespace Gameplay.Abilities.Homing
         {
             if (!_camera) return;
 
-            // Check if there is a target in front of the camera
-            if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hit, maxDistance,
-                    hittableLayers) || !hit.transform.TryGetComponent(out Damageable firstTarget)) return;
+            Transform firstTarget = null;
 
-            var projectile = Instantiate(projectilePrefab, _camera.transform.position,
-                Quaternion.LookRotation(_camera.transform.forward));
-            projectile.Initialize(projectileSpeed, maxHits, damage, firstTarget.transform);
+            // Try to find an enemy in front of the camera, to set as the first target
+            if (Physics.SphereCast(_camera.transform.position, 3f, _camera.transform.forward,
+                    out RaycastHit hit, maxDistance, hittableLayers))
+            {
+                if (hit.transform.TryGetComponent(out Damageable _))
+                {
+                    firstTarget = hit.transform;
+                }
+            }
+
+
+            var projectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
+            projectile.Initialize(projectileSpeed, maxHits, damage, firstTarget);
+
+            if (abilitySound)
+            {
+                AudioUtility.CreateSfx(abilitySound, transform.position,
+                    AudioUtility.AudioGroups.DamageTick);
+            }
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.DebugUtilities
+namespace DebugUtilities
 {
     public class DebugGizmo : MonoBehaviour
     {
         [SerializeField] private Color gizmoColor = Color.green;
+        [SerializeField] private float gizmoSize = 1f;
 
         private void OnDrawGizmos()
         {
@@ -12,7 +13,7 @@ namespace Gameplay.DebugUtilities
             Gizmos.color = gizmoColor;
 
             // Draw a wireframe sphere at the GameObject's position
-            Gizmos.DrawWireSphere(transform.position, 1.0f); // Radius of 1
+            Gizmos.DrawWireSphere(transform.position, gizmoSize);
         }
     }
 }

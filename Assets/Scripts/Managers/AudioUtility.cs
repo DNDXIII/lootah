@@ -19,8 +19,8 @@ namespace Managers
             PlayerMovement
         }
 
-        public static void CreateSfx(AudioClip clip, Vector3 position, AudioGroups audioGroup, float spatialBlend,
-            float pitch = 1f, float rolloffDistanceMin = 1f)
+        public static void CreateSfx(AudioClip clip, Vector3 position, AudioGroups audioGroup, float spatialBlend = 0f,
+            float pitch = 1f, float rolloffDistanceMin = 1f, bool randomizePitch = false)
         {
             GameObject impactSfxInstance = new GameObject();
             impactSfxInstance.transform.position = position;
@@ -28,7 +28,15 @@ namespace Managers
             source.clip = clip;
             source.spatialBlend = spatialBlend;
             source.minDistance = rolloffDistanceMin;
+
+            if (randomizePitch)
+            {
+                pitch = Random.Range(.8f, 1.2f);
+            }
+
             source.pitch = pitch;
+
+
             source.Play();
 
             source.outputAudioMixerGroup = GetAudioGroup(audioGroup);

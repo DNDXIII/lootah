@@ -19,6 +19,21 @@ namespace Gameplay.Abilities.Homing
         [Tooltip("The maximum distance the projectile can travel.")] [SerializeField]
         private float maxDistance = 50f;
 
+        [Tooltip("Rotation speed of the projectile.")] [SerializeField]
+        private float initialRotationSpeed = 10f;
+
+        [Tooltip("How much the rotation speed increases per second")] [SerializeField]
+        private float rotationAcceleration = 0.5f;
+
+        [Tooltip("Maximum rotation speed of the projectile.")] [SerializeField]
+        private float maxRotationSpeed = 20f;
+
+        [Tooltip("Max vertical offset of the projectile when it finds a new target")] [SerializeField]
+        private float maxVerticalOffset = 2f;
+
+        [Tooltip("Vertical offset falloff speed of the projectile.")] [SerializeField]
+        private float verticalOffsetFalloff = 0.5f;
+
         [Header("Collision detection")] [Tooltip("Radius of this projectile's collision detection")]
         public float radius = 0.01f;
 
@@ -36,25 +51,74 @@ namespace Gameplay.Abilities.Homing
         private Transform _currentTarget;
         private readonly List<Collider> _ignoredColliders = new();
         private Vector3 _lastRootPosition;
+        private float _currentVerticalOffset;
+        private float _currentRotationSpeed;
 
 
-        public void Initialize(float speed, int maxHits, int damage, Transform initialTarget)
+        public void Initialize(float speed, int maxHits, int damage, Transform firstTarget = null)
         {
             _speed = speed;
             _maxHits = maxHits;
             _damage = damage;
-            _currentTarget = initialTarget;
+            _currentTarget = firstTarget;
         }
+
 
         private void LateUpdate()
         {
-            // Update the projectile's position and rotation
-            if (!_currentTarget) return;
+            if (!_currentTarget)
+            {
+                MoveWithoutTarget();
+                return;
+            }
 
-            // TODO: Need to find the target center somehow, probably need an Enemy class with a center property
-            Vector3 direction = ((_currentTarget.position + Vector3.up) - transform.position).normalized;
-            transform.position += direction * (_speed * Time.deltaTime);
-            transform.rotation = Quaternion.LookRotation(direction);
+            MoveTowardsTarget();
+        }
+
+        private void MoveWithoutTarget()
+        {
+            // Try finding a close by target
+            if (TryFindNextTarget(out var nextTarget))
+            {
+                SetNextTarget(nextTarget);
+                return;
+            }
+
+            // just move forward if we don't have a target, and we can't find one
+            transform.position += transform.forward * (_speed * Time.deltaTime);
+        }
+
+        private void SetNextTarget(Transform nextTarget)
+        {
+            _currentTarget = nextTarget;
+            // Adds a vertical offset to the projectile's position so its movement is more dynamic
+            _currentVerticalOffset = Random.Range(-maxVerticalOffset, maxVerticalOffset);
+            // Reset the rotation speed to the initial value
+            _currentRotationSpeed = initialRotationSpeed;
+        }
+
+
+        private void MoveTowardsTarget()
+        {
+            // Make the vertical offset go to zero over time
+            _currentVerticalOffset = Mathf.MoveTowards(_currentVerticalOffset, 0f,
+                verticalOffsetFalloff * Time.deltaTime);
+
+            Vector3 targetPosition =
+                (_currentTarget.position + Vector3.up * 1.5f) + (Vector3.up * _currentVerticalOffset);
+            Vector3 direction = (targetPosition - transform.position).normalized;
+
+            // Gradually increase the rotation speed over time
+            _currentRotationSpeed = Mathf.Min(_currentRotationSpeed + rotationAcceleration * Time.deltaTime,
+                maxRotationSpeed);
+
+            // Smoothly rotate towards the target direction
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation =
+                Quaternion.RotateTowards(transform.rotation, targetRotation, _currentRotationSpeed * Time.deltaTime);
+
+            // Move forward in the current facing direction
+            transform.position += transform.forward * (_speed * Time.deltaTime);
         }
 
         private void FixedUpdate()
@@ -84,6 +148,7 @@ namespace Gameplay.Abilities.Homing
 
             if (foundHit)
             {
+                Debug.Log($"Hit {closestHit.collider.name} at {closestHit.point}");
                 // Handle case of casting while already inside a collider
                 if (closestHit.distance <= 0f)
                 {
@@ -99,17 +164,29 @@ namespace Gameplay.Abilities.Homing
 
         private void OnHit(Vector3 hitPoint, Vector3 hitNormal, Collider hitCollider)
         {
-            PlayHitEffects(hitPoint, hitNormal);
-
             if (!hitCollider.TryGetComponent(out Damageable damageable))
             {
-                // We probably hit a wall or environment, destroy the projectile
+                // We probably hit a wall or environment.
+
+                // If we have a target, we want to ignore this hit so the projectile can keep going
+                if (_currentTarget)
+                {
+                    return;
+                }
+
+                // If we don't have a target, we want to destroy the projectile, since it has no target to hit
                 Destroy(gameObject);
                 return;
             }
 
-            // We hit a damageable object, apply damage
+            HandleHitDamageable(hitPoint, hitNormal, damageable);
+        }
+
+        private void HandleHitDamageable(Vector3 hitPoint, Vector3 hitNormal, Damageable damageable)
+        {
             damageable.TakeDamage(_damage, gameObject, false);
+            PlayHitEffects(hitPoint, hitNormal);
+
             // ignore the collider of the damageable object, so that we don't hit it again
             var colliders = damageable.Health.GetComponentsInChildren<Collider>();
             _ignoredColliders.AddRange(colliders);
@@ -121,19 +198,22 @@ namespace Gameplay.Abilities.Homing
                 return;
             }
 
-            FindNextTarget(hitPoint);
+            TryFindNextTarget(out var nextTarget);
+            // Always set the next target, even if we don't find one, so that the projectile can keep moving
+            SetNextTarget(nextTarget);
         }
 
-        private void FindNextTarget(Vector3 hitPoint)
+        private bool TryFindNextTarget(out Transform nextTarget)
         {
-            var colliders = Physics.OverlapSphere(hitPoint, maxDistance, hittableLayers);
+            var colliders = Physics.OverlapSphere(transform.position, maxDistance, hittableLayers);
             Collider closestCollider = null;
             float closestDistance = Mathf.Infinity;
+
             foreach (var coll in colliders)
             {
                 if (!coll.TryGetComponent(out Damageable _) || _ignoredColliders.Contains(coll)) continue;
 
-                float distance = Vector3.Distance(hitPoint, coll.transform.position);
+                float distance = Vector3.Distance(transform.position, coll.transform.position);
                 if (!(distance < closestDistance)) continue;
                 closestDistance = distance;
                 closestCollider = coll;
@@ -141,12 +221,12 @@ namespace Gameplay.Abilities.Homing
 
             if (closestCollider)
             {
-                _currentTarget = closestCollider.transform;
+                nextTarget = closestCollider.transform;
+                return true;
             }
-            else
-            {
-                Destroy(gameObject);
-            }
+
+            nextTarget = null;
+            return false;
         }
 
         private void PlayHitEffects(Vector3 hitPoint, Vector3 hitNormal)
@@ -160,7 +240,8 @@ namespace Gameplay.Abilities.Homing
             // impact sfx
             if (impactSound)
             {
-                AudioUtility.CreateSfx(impactSound, hitPoint, AudioUtility.AudioGroups.EnemyAttack, 1f);
+                AudioUtility.CreateSfx(impactSound, hitPoint, AudioUtility.AudioGroups.EnemyAttack, spatialBlend: 1f,
+                    randomizePitch: true);
             }
         }
 
