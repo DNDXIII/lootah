@@ -25,12 +25,12 @@ namespace Managers
 
         private void SpawnHealthPickups(EnemyKillEvent obj)
         {
-            var enemyPosition = obj.Enemy.transform.position;
+            var spawnPosition = obj.Enemy.transform.position + Vector3.up;
             var healthPickupAmount = Random.Range(minHealthPickupAmount, maxHealthPickupAmount + 1);
 
             for (int i = 0; i < healthPickupAmount; i++)
             {
-                var pickup = Instantiate(healthPickupPrefab, enemyPosition, Quaternion.identity);
+                var pickup = Instantiate(healthPickupPrefab, spawnPosition, Quaternion.identity);
 
                 // Add a bit of upward and random force to the pickup
                 if (!pickup.TryGetComponent<Rigidbody>(out var rb))

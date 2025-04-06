@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 4386607995548702883}
   - component: {fileID: 5370352809761150649}
   - component: {fileID: -8684996373305206096}
+  - component: {fileID: -3362256906124263704}
   m_Layer: 3
   m_Name: RangedExplosionEnemy
   m_TagString: Enemy
@@ -324,6 +325,28 @@ MonoBehaviour:
     weight: 5
   - weaponData: {fileID: 11400000, guid: 2c75d066816ea674e927e10b8e721ff1, type: 2}
     weight: 1
+--- !u!114 &-3362256906124263704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4873970326744914053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c223b29bcc24438a91a9b9943017fcc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodDecalPrefabs:
+  - {fileID: 3175211310272309621, guid: 35cd1e81109026c41a6ef296064f0a71, type: 3}
+  - {fileID: 3175211310272309621, guid: 000492c6cb3566449b37d40bc5014e36, type: 3}
+  - {fileID: 3175211310272309621, guid: 88e460a33e6c6274a88bf5b7aa238311, type: 3}
+  minDecals: 1
+  maxDecals: 4
+  spawnRadius: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &7416897025645073522
 GameObject:
   m_ObjectHideFlags: 0

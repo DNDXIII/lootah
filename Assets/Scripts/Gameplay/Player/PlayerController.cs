@@ -55,13 +55,15 @@ namespace Gameplay.Player
         [Header("Jump")] [Tooltip("Max amount of jumps")]
         public int maxJumpCount = 2;
 
-        [Header("Dash Settings")] [Tooltip("Speed of the dash")]
-        public float dashSpeed = 30f;
+        [Header("Dash Settings")] [Tooltip("Max amount of dashes")]
+        public int maxDashCount = 3;
+
+        [Tooltip("Speed of the dash")] public float dashSpeed = 30f;
 
         [Tooltip("Duration of the dash in seconds")]
         public float dashDuration = 0.2f;
 
-        [Tooltip("Cooldown time before another dash can be used")]
+        [Tooltip("Cooldown time before a dash charge is available again")]
         public float dashCooldown = 1f;
 
         [Tooltip("Dash sound effect")] public AudioClip dashSfx;
@@ -70,6 +72,8 @@ namespace Gameplay.Player
         public bool IsGrounded { get; private set; }
         public RecoverablePlayerHealth Health { get; private set; }
         public Damageable Damageable { get; private set; }
+        public int AvailableDashCount => _currentDashCount;
+
         private PlayerInputHandler _playerInputHandler;
         private CharacterController _controller;
 
@@ -80,9 +84,11 @@ namespace Gameplay.Player
         private float _currentJumpCount;
 
         private bool _isDashing;
+        private int _currentDashCount;
         private float _dashStartTime;
-        private float _lastDashTime;
+        private float _newDashTime;
         private Vector3 _dashDirection;
+        private bool _dashQueued;
 
         private const float JumpGroundingPreventionTime = 0.2f;
         private const float GroundCheckDistanceInAir = 0.07f;
@@ -97,6 +103,7 @@ namespace Gameplay.Player
             _controller = GetComponent<CharacterController>();
             _playerInputHandler = GetComponent<PlayerInputHandler>();
             _currentJumpCount = maxJumpCount;
+            _currentDashCount = maxDashCount;
         }
 
         private void Start()
@@ -123,17 +130,40 @@ namespace Gameplay.Player
                 Health.Kill();
             }
 
-            // TODO Move to the input handler
-            if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= _lastDashTime + dashCooldown)
-            {
-                StartDash();
-            }
+            HandleDash();
 
             GroundCheck();
 
             HandleCameraRotation();
 
             HandleCharacterMovement();
+        }
+
+        private void HandleDash()
+        {
+            if (_currentDashCount < maxDashCount)
+            {
+                // if the dash cooldown time has passed, add a dash charge
+                if (Time.time >= _newDashTime)
+                {
+                    _currentDashCount++;
+                    // Set the next cooldown time
+                    _newDashTime = Time.time + dashCooldown;
+                }
+            }
+
+            // TODO Move to the input handler
+            // If the player presses the dash key and has a dash charge, start the dash
+            // If they are already dashing, queue the dash so it will be executed when the current dash ends
+            if ((Input.GetKeyDown(KeyCode.LeftShift) && _currentDashCount > 0) || _dashQueued)
+            {
+                if (!_dashQueued && _isDashing)
+                {
+                    _dashQueued = true;
+                }
+
+                StartDash();
+            }
         }
 
         private void OnDie()
@@ -154,9 +184,18 @@ namespace Gameplay.Player
             // Ensure there's movement input
             AudioUtility.CreateSfx(dashSfx, transform.position, AudioUtility.AudioGroups.PlayerMovement, 0f);
             _isDashing = true;
+            _dashQueued = false;
             _dashStartTime = Time.time;
-            _lastDashTime = Time.time;
             Health.SetInvincibility(true);
+
+            // if this is the first dash, set the dash start time
+            // This way using another dash will not reset the dash time
+            if (_currentDashCount == maxDashCount)
+            {
+                _newDashTime = Time.time + dashCooldown;
+            }
+
+            _currentDashCount--;
         }
 
         private void GroundCheck()
