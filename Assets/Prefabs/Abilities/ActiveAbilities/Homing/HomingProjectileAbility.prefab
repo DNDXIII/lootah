@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 40
-  maxHits: 13
+  maxHits: 3
   damage: 10
   maxDistance: 50
   hittableLayers:

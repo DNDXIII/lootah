@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Shared;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace Managers.EnemySpawnerManager
 {
@@ -56,7 +54,7 @@ namespace Managers.EnemySpawnerManager
         private void SpawnWave()
         {
             // find a random wave spawner
-            var waveToSpawn = _waveEnemySpawners[UnityEngine.Random.Range(0, _waveEnemySpawners.Count)];
+            var waveToSpawn = _waveEnemySpawners[Random.Range(0, _waveEnemySpawners.Count)];
             _enemyCount += waveToSpawn.SpawnWave();
             _waveCount++;
 

@@ -180,7 +180,7 @@ MonoBehaviour:
   fireMode: 1
   projectilePrefab: {fileID: 0}
   hitscanRange: 100
-  hitEffectPrefab: {fileID: 0}
+  hitEffectPrefab: {fileID: 3494450149275129416, guid: 4e582c08cf22ae249bf90f1a46d62db4, type: 3}
   bloodEffectPrefab: {fileID: 3494450149275129416, guid: 37638f31818cdf048a341533c6cea9a2, type: 3}
   bulletTrailPrefab: {fileID: -443232460496753036, guid: 2b03f80799689d34893be01d81f0285b, type: 3}
   recoilForce: 1

@@ -59,9 +59,9 @@ MonoBehaviour:
   Speed: 100
   GravityDownAcceleration: 0
   TrajectoryCorrectionDistance: 0
-  InheritWeaponVelocity: 0
-  Damage: 8
   RadiusColor: {r: 0, g: 0.2, b: 0.2, a: 0.2}
+  isExplosive: 0
+  explosionRadius: 5
 --- !u!1 &4766405266169870199
 GameObject:
   m_ObjectHideFlags: 0

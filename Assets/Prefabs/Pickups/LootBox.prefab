@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4795053329253358955}
   - component: {fileID: 5164597034631946494}
   - component: {fileID: 5785812654006768275}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: LootBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 209004134030188258}
   - component: {fileID: 426078793718580701}
   - component: {fileID: 9186581790894774388}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

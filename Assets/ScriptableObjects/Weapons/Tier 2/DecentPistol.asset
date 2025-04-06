@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: DecentPistol
   description: Finally something decent
   sprite: {fileID: 21300000, guid: 5ba24ed17a351ed44b47663cf4ebb909, type: 3}
-  prefab: {fileID: 4227961463163621887, guid: 056eff8c64eb0384d8ca5d5e3cd355f7, type: 3}
+  prefab: {fileID: 4227961463163621887, guid: 5c257721bd3647144a545c5acaa95752, type: 3}
   damage: 3
   delayBetweenShots: 0.5
   bulletSpreadAngle: 0

@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 6924542969931146705}
   - component: {fileID: 3559393980968094660}
   - component: {fileID: 6094298791099085164}
+  - component: {fileID: 467775782714099588}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -243,6 +244,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPickupPrefab: {fileID: 5031076661795990650, guid: aecebf576c309fb489218facd36ccf87, type: 3}
+--- !u!114 &467775782714099588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950726106313193431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9dd724692a47f1ab3ffcca7b91de5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPickupPrefab: {fileID: 5156992350374094439, guid: b5a3fff8d35a63c4881a6e2c217483f3, type: 3}
+  minHealthPickupAmount: 1
+  maxHealthPickupAmount: 3
+  spawnRandomDirectionForce: 10
+  spawnUpwardForce: 12
 --- !u!1 &981374986148099034
 GameObject:
   m_ObjectHideFlags: 0

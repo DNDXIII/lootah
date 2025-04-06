@@ -316,12 +316,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d546458edb041d79011ec6e4077dbc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelaySeconds: 3
+  attackDelaySeconds: 2
   attackDuration: 1
   attackDamage: 15
   attackSfx: {fileID: 8300000, guid: 9c43320337662c04aa6045df1a97e92d, type: 3}
   projectilePrefab: {fileID: 8860548218057244454, guid: 144e556da3d1e404bae6ecd03f7cbceb, type: 3}
-  numberOfProjectiles: 3
+  numberOfProjectiles: 4
   weaponSpreadAngle: 0.5
   delayBeforeFirstShot: 0.5
   delayBetweenProjectiles: 0.25

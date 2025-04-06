@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d546458edb041d79011ec6e4077dbc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelaySeconds: 3
+  attackDelaySeconds: 2
   attackDuration: 0
   attackDamage: 30
   attackSfx: {fileID: 8300000, guid: 9c43320337662c04aa6045df1a97e92d, type: 3}

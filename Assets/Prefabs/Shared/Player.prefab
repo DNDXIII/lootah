@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  maxRecoverableHealth: 15
+  maxRecoverableHealth: 0
   recoverableHealthDecayDelay: 5
 --- !u!114 &341064284281349145
 MonoBehaviour:
