@@ -7,21 +7,18 @@ namespace Gameplay.Weapons
     {
         public GameObject Owner { get; private set; }
         public Vector3 InitialPosition { get; private set; }
-        public Vector3 InitialDirection { get; private set; }
-        public Vector3 InheritedMuzzleVelocity { get; private set; }
 
         public UnityAction OnShoot;
 
-        protected float damage = 10f;
+        protected float Damage = 10f;
 
         public void Shoot(GameObject controller, float projectileDamage)
         {
             Owner = controller;
             InitialPosition = transform.position;
-            InitialDirection = transform.forward;
 
 
-            damage = projectileDamage;
+            Damage = projectileDamage;
 
             OnShoot?.Invoke();
         }

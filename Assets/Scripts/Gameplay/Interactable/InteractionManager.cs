@@ -23,12 +23,16 @@ namespace Gameplay.Interactable
             _camera = Camera.main;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
+            // debug the ray 
+            Debug.DrawRay(_camera.transform.position, _camera.transform.forward * interactionDistance, Color.red);
+
             if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hit,
                     interactionDistance,
                     interactableLayer))
             {
+                Debug.Log(hit.collider.name);
                 // TODO: Refactor this to use just the interface dude
                 if (hit.collider.TryGetComponent(out Interactable interactable))
                 {

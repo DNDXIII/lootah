@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1032134235688461859}
+  - component: {fileID: 4510278545895094381}
   m_Layer: 7
   m_Name: FirstPersonSocket
   m_TagString: Untagged
@@ -66,6 +67,27 @@ Transform:
   - {fileID: 2431621672733397960}
   m_Father: {fileID: 1679710919372109372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4510278545895094381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237726643280167091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ef9893370a44719c85bf49d38a8a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 1679710919372109372}
+  positionSpringStrength: 200
+  positionDamping: 15
+  maxOffset: 0.15
+  positionLagMultiplier: 0.003
+  rotationSpringStrength: 400
+  rotationDamping: 20
+  maxRotation: 4
+  rotationLagMultiplier: 0.5
 --- !u!1 &651144532916491466
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,9 +394,6 @@ MonoBehaviour:
   weaponParentSocket: {fileID: 1671288865852071645}
   defaultWeaponPosition: {fileID: 3216560764216272048}
   downWeaponPosition: {fileID: 3878165934333809968}
-  bobFrequency: 10
-  bobSharpness: 10
-  defaultBobAmount: 0.05
   recoilSharpness: 100
   maxRecoilDistance: 2
   recoilRestitutionSharpness: 5
@@ -435,7 +454,7 @@ MonoBehaviour:
   interactionDistance: 3
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
 --- !u!114 &4085571715971403320
 MonoBehaviour:
   m_ObjectHideFlags: 0

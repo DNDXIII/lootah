@@ -108,10 +108,12 @@ namespace Gameplay.Weapons
         private AudioSource _shootAudioSource;
         private WeaponStats _weaponStats;
         private Camera _camera;
+        private Animator _animator;
 
         private void Awake()
         {
             _shootAudioSource = GetComponent<AudioSource>();
+            _animator = GetComponentInChildren<Animator>();
         }
 
         private void Start()
@@ -222,6 +224,11 @@ namespace Gameplay.Weapons
             if (shootSfx)
             {
                 _shootAudioSource.PlayOneShot(shootSfx);
+            }
+
+            if (_animator)
+            {
+                _animator.Play("Shoot");
             }
 
             OnShoot?.Invoke();

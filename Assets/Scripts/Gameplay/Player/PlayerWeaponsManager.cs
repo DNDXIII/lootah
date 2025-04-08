@@ -30,15 +30,6 @@ namespace Gameplay.Player
         [Tooltip("Position for innactive weapons")]
         public Transform downWeaponPosition;
 
-        [Header("Weapon Bob")]
-        [Tooltip("Frequency at which the weapon will move around in the screen when the player is in movement")]
-        public float bobFrequency = 10f;
-
-        [Tooltip("How fast the weapon bob is applied, the bigger value the fastest")]
-        public float bobSharpness = 10f;
-
-        [Tooltip("Distance the weapon bobs when not aiming")]
-        public float defaultBobAmount = 0.05f;
 
         [Header("Weapon Recoil")]
         [Tooltip("This will affect how fast the recoil moves the weapon, the bigger the value, the fastest")]
@@ -63,16 +54,12 @@ namespace Gameplay.Player
         private readonly WeaponController[] _weaponSlots = new WeaponController[2];
         private PlayerInputHandler _inputHandler;
         private PlayerController _playerCharacterController;
-        private float _weaponBobFactor;
-        private Vector3 _lastCharacterPosition;
         private Vector3 _weaponMainLocalPosition;
-        private Vector3 _weaponBobLocalPosition;
         private Vector3 _weaponRecoilLocalPosition;
         private Vector3 _accumulatedRecoil;
         private float _timeStartedWeaponSwitch;
         private WeaponSwitchState _weaponSwitchState;
         private int _weaponSwitchNewWeaponIndex;
-
 
         private void Start()
         {
@@ -135,13 +122,12 @@ namespace Gameplay.Player
         // Update various animated features in LateUpdate because it needs to override the animated arm position
         private void LateUpdate()
         {
-            UpdateWeaponBob();
             UpdateWeaponRecoil();
             UpdateWeaponSwitching();
 
             // Set final weapon socket position based on all the combined animation influences
             weaponParentSocket.localPosition =
-                _weaponMainLocalPosition + _weaponBobLocalPosition + _weaponRecoilLocalPosition;
+                _weaponMainLocalPosition + _weaponRecoilLocalPosition;
         }
 
         // Sets the FOV of the main camera and the weapon camera simultaneously
@@ -215,40 +201,6 @@ namespace Gameplay.Player
             }
         }
 
-        // Updates the weapon bob animation based on character speed
-        private void UpdateWeaponBob()
-        {
-            if (Time.deltaTime > 0f)
-            {
-                Vector3 playerCharacterVelocity =
-                    (_playerCharacterController.transform.position - _lastCharacterPosition) / Time.deltaTime;
-
-                // calculate a smoothed weapon bob amount based on how close to our max grounded movement velocity we are
-                float characterMovementFactor = 0f;
-                if (_playerCharacterController.IsGrounded)
-                {
-                    characterMovementFactor =
-                        Mathf.Clamp01(playerCharacterVelocity.magnitude /
-                                      (_playerCharacterController.maxSpeedOnGround *
-                                       _playerCharacterController.sprintSpeedModifier));
-                }
-
-                _weaponBobFactor =
-                    Mathf.Lerp(_weaponBobFactor, characterMovementFactor, bobSharpness * Time.deltaTime);
-
-                // Calculate vertical and horizontal weapon bob values based on a sine function
-                float frequency = bobFrequency;
-                float hBobValue = Mathf.Sin(Time.time * frequency) * defaultBobAmount * _weaponBobFactor;
-                float vBobValue = ((Mathf.Sin(Time.time * frequency * 2f) * 0.5f) + 0.5f) * defaultBobAmount *
-                                  _weaponBobFactor;
-
-                // Apply weapon bob
-                _weaponBobLocalPosition.x = hBobValue;
-                _weaponBobLocalPosition.y = Mathf.Abs(vBobValue);
-
-                _lastCharacterPosition = _playerCharacterController.transform.position;
-            }
-        }
 
         // Updates the weapon recoil animation
         private void UpdateWeaponRecoil()
