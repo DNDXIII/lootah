@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using Gameplay.Weapons;
-using Managers;
-using Shared;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,21 +23,16 @@ namespace Gameplay.Enemy2
         private float weaponSpreadAngle = 10f;
 
 
-        [SerializeField] private EnemyAttackToken attackType = EnemyAttackToken.Light;
-
-        public override bool TryAttack(GameObject target)
+        protected override void StartAttack(GameObject target)
         {
-            if (!CanAttack()) return false;
-
-            IsAttacking = true;
             StartCoroutine(ShootBurst(target));
-            return true;
         }
 
         private IEnumerator ShootBurst(GameObject target)
         {
-            yield return new WaitForSeconds(delayBeforeAttack);
+            PlayAttackEffects();
 
+            yield return new WaitForSeconds(delayBeforeAttack);
             for (int i = 0; i < numberOfProjectiles; i++)
             {
                 // Check if the enemy has been destroyed in the meantime
@@ -55,8 +48,7 @@ namespace Gameplay.Enemy2
 
             yield return new WaitForSeconds(delayAfterAttack);
 
-            IsAttacking = false;
-            EnemyAttackTokenManager.Instance.ReleaseToken(attackType);
+            EndAttack();
         }
 
         private Vector3 GetShotDirectionWithinSpread(GameObject target)
@@ -68,12 +60,6 @@ namespace Gameplay.Enemy2
             Vector3 spread = Random.insideUnitSphere * weaponSpreadAngle;
             Vector3 direction = toPlayer + spread;
             return direction.normalized;
-        }
-
-        private bool CanAttack()
-        {
-            return !IsAttacking &&
-                   EnemyAttackTokenManager.Instance.RequestToken(attackType);
         }
     }
 }

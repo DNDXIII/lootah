@@ -32,7 +32,6 @@ namespace Gameplay.Interactable
                     interactionDistance,
                     interactableLayer))
             {
-                Debug.Log(hit.collider.name);
                 // TODO: Refactor this to use just the interface dude
                 if (hit.collider.TryGetComponent(out Interactable interactable))
                 {

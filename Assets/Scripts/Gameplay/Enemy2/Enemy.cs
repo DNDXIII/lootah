@@ -1,6 +1,7 @@
 ﻿using Gameplay.Shared;
 using Managers;
 using Shared;
+using Unity.Behavior;
 using UnityEngine;
 
 namespace Gameplay.Enemy2
@@ -11,8 +12,10 @@ namespace Gameplay.Enemy2
     {
         [SerializeField] private Transform center;
 
+
         public Transform Center => center;
         public Health Health { get; private set; }
+
 
         private void Awake()
         {
@@ -29,6 +32,11 @@ namespace Gameplay.Enemy2
             EnemyKillEvent evt = Events.EnemyKillEvent;
             evt.Enemy = this;
             EventManager.Broadcast(evt);
+
+            if (TryGetComponent<BehaviorGraphAgent>(out var behaviorGraphAgent))
+            {
+                behaviorGraphAgent.enabled = false;
+            }
         }
     }
 }

@@ -21,6 +21,9 @@ namespace Gameplay.Player
         [Tooltip("Distance from the bottom of the character controller capsule to test for grounded")]
         public float groundCheckDistance = 0.05f;
 
+        [Tooltip("SFX played when the player is hit")]
+        public AudioClip onHitSfx;
+
         [Header("Movement")] [Tooltip("Max movement speed when grounded (when not sprinting)")]
         public float maxSpeedOnGround = 10f;
 
@@ -43,17 +46,10 @@ namespace Gameplay.Player
         [Tooltip("Height at which the player dies instantly when falling off the map")]
         public float killHeight = -50f;
 
-        [Header("Rotation")] [Tooltip("Rotation speed for moving the camera")]
-        public float rotationSpeed = 200f;
-
         [Header("Jump")] [Tooltip("Force applied upward when jumping")]
         public float jumpForce = 9f;
 
-        [Tooltip("SFX played when the player is hit")]
-        public AudioClip onHitSfx;
-
-        [Header("Jump")] [Tooltip("Max amount of jumps")]
-        public int maxJumpCount = 2;
+        [Tooltip("Max amount of jumps")] public int maxJumpCount = 2;
 
         [Header("Dash Settings")] [Tooltip("Max amount of dashes")]
         public int maxDashCount = 3;
@@ -329,7 +325,7 @@ namespace Gameplay.Player
                 // rotate the transform with the input speed around its local Y axis
                 transform.Rotate(
                     new Vector3(0f,
-                        (_playerInputHandler.GetLookInputsHorizontal() * rotationSpeed),
+                        _playerInputHandler.GetLookInputsHorizontal(),
                         0f), Space.Self);
             }
 
@@ -337,7 +333,7 @@ namespace Gameplay.Player
             {
                 // add vertical inputs to the camera's vertical angle
                 _cameraVerticalAngle +=
-                    _playerInputHandler.GetLookInputsVertical() * rotationSpeed;
+                    _playerInputHandler.GetLookInputsVertical();
 
                 // limit the camera's vertical angle to min/max
                 _cameraVerticalAngle = Mathf.Clamp(_cameraVerticalAngle, -89f, 89f);
