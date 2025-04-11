@@ -58,7 +58,7 @@ namespace Gameplay.Abilities
 
         private void PerformChainLightning()
         {
-            var hitBaseHealths = new List<BaseHealth>();
+            var hitBaseHealths = new List<Health>();
             var hitDamageables = new List<Damageable>();
 
             if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hit, maxDistance,
@@ -91,14 +91,14 @@ namespace Gameplay.Abilities
             }
         }
 
-        private void ChainToNextEnemy(BaseHealth currentEnemy, List<BaseHealth> hitEnemies,
+        private void ChainToNextEnemy(Health currentEnemy, List<Health> hitEnemies,
             List<Damageable> hitDamageables)
         {
             for (int i = 0; i < maxChains; i++)
             {
                 var enemiesInRange = Physics.OverlapSphere(currentEnemy.transform.position, chainRange, layerMask);
 
-                BaseHealth closestEnemy = null;
+                Health closestEnemy = null;
                 Damageable closestDamageable = null;
                 float closestDistance = Mathf.Infinity;
 

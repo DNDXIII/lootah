@@ -23,7 +23,7 @@ namespace Gameplay.Enemy
         private float deathDelay;
 
         [Header("Enemy Health")] [Tooltip("The health component of the enemy.")] [SerializeField]
-        private BaseHealth health;
+        private Health health;
 
         [Header("Enemy Visuals")] [Tooltip("The color the enemy turns when damaged.")] [SerializeField]
         private Color damagedColor = Color.red;
@@ -54,7 +54,7 @@ namespace Gameplay.Enemy
         {
             if (health == null)
             {
-                health = GetComponent<BaseHealth>();
+                health = GetComponent<Health>();
             }
 
             health.OnDie += OnDie;
@@ -76,9 +76,7 @@ namespace Gameplay.Enemy
 
         private void OnDie()
         {
-            EnemyKillEvent evt = Events.EnemyKillEvent;
-            evt.Enemy = this;
-            EventManager.Broadcast(evt);
+            
 
             if (deathSfx.Length > 0)
             {

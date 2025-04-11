@@ -10,7 +10,7 @@ namespace Gameplay.Pickups
 
         protected override void OnPickup(PlayerController playerController)
         {
-            BaseHealth playerHealth = playerController.GetComponent<BaseHealth>();
+            Health playerHealth = playerController.GetComponent<Health>();
             playerHealth.Heal(healAmount);
         }
     }

@@ -67,7 +67,7 @@ namespace Gameplay.Enemy
         private Animator _animator;
         private AIState _currentState = AIState.Idle;
         private NavMeshAgent _navMeshAgent;
-        private BaseHealth _health;
+        private Health _health;
 
         // Internal Variables
         private float _lastLosUpdate = float.MinValue;
@@ -80,7 +80,7 @@ namespace Gameplay.Enemy
         {
             _animator = GetComponentInChildren<Animator>();
 
-            _health = GetComponent<BaseHealth>();
+            _health = GetComponent<Health>();
             _health.OnDamaged += OnDamaged;
 
 

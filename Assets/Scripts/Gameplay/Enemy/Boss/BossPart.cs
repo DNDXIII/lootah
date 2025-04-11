@@ -4,12 +4,12 @@ using UnityEngine.Events;
 
 namespace Gameplay.Enemy.Boss
 {
-    [RequireComponent(typeof(BaseHealth))]
+    [RequireComponent(typeof(Health))]
     public class BossPart : MonoBehaviour
     {
         public UnityAction OnDie;
 
-        private BaseHealth _health;
+        private Health _health;
 
         // TODO: Debug
         public Renderer localRenderer;
@@ -17,7 +17,7 @@ namespace Gameplay.Enemy.Boss
 
         private void Awake()
         {
-            _health = GetComponent<BaseHealth>();
+            _health = GetComponent<Health>();
             _health.OnDie += HandleDeath;
 
             _originalColor = localRenderer.material.color;

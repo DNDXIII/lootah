@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Gameplay.Enemy;
+using Gameplay.Enemy2;
 using Shared;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +10,7 @@ namespace Managers.EnemySpawnerManager
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] private EnemyController enemyPrefab;
+        [SerializeField] private Enemy enemyPrefab;
         [SerializeField] private ParticleSystem spawnEffect;
         [SerializeField] private AudioClip spawnSfx;
 
@@ -28,7 +29,7 @@ namespace Managers.EnemySpawnerManager
         [Tooltip("If the object should be destroyed when all enemies are dead")] [SerializeField]
         private bool destroyOnDeath = true;
 
-        private readonly List<EnemyController> _enemies = new();
+        private readonly List<Enemy> _enemies = new();
         private Transform[] _spawnPoints;
 
         // Kinda shit, but it works immediately after they are spawned.
@@ -92,7 +93,7 @@ namespace Managers.EnemySpawnerManager
 
         private void OnEnemyKilled(EnemyKillEvent obj)
         {
-            var enemyController = obj.Enemy.GetComponent<EnemyController>();
+            var enemyController = obj.Enemy.GetComponent<Enemy>();
             _enemies.Remove(enemyController);
 
             if (_enemies.Count != 0) return;

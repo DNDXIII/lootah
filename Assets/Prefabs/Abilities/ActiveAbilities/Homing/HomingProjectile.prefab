@@ -54,6 +54,9 @@ MonoBehaviour:
   hittableLayers:
     serializedVersion: 2
     m_Bits: 73
+  targetingLayers:
+    serializedVersion: 2
+    m_Bits: 8
   maxDistance: 20
   initialRotationSpeed: 400
   rotationAcceleration: 800

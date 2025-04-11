@@ -17,14 +17,14 @@ namespace DebugUtilities
 
 
         // References
-        private BaseHealth _health;
+        private Health _health;
         private Canvas _canvas;
         private RectTransform _healthBarBg;
         private RectTransform _healthBarFill;
 
         private void Awake()
         {
-            _health = GetComponent<BaseHealth>();
+            _health = GetComponent<Health>();
 
             if (_health == null)
             {

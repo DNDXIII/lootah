@@ -1,5 +1,6 @@
 ﻿using System;
 using Managers;
+using Shared;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -61,7 +62,12 @@ namespace UI
 
         private static void OnOptionsButton(ClickEvent evt)
         {
-            Debug.Log("Options");
+            // get difficulty as int
+            var previousDifficulty = GameSettingsManager.Instance.GameDifficulty;
+            //cycle to next difficulty
+            GameSettingsManager.Instance.GameDifficulty =
+                (GameDifficulty)(((int)previousDifficulty + 1) % Enum.GetValues(typeof(GameDifficulty)).Length);
+            Debug.Log("new difficulty: " + GameSettingsManager.Instance.GameDifficulty);
         }
 
         private void OnResumeButton(ClickEvent clickEvent)

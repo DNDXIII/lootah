@@ -9,13 +9,13 @@ namespace Gameplay.Shared
     public class Damageable : MonoBehaviour
     {
         [SerializeField] private float damageMultiplier = 1f;
-        [SerializeField] private BaseHealth health;
+        [SerializeField] private Health health;
 
         [SerializeField] private bool isCritical;
 
         private Collider _collider;
 
-        public BaseHealth Health => health;
+        public Health Health => health;
 
         private void Awake()
         {
@@ -26,7 +26,7 @@ namespace Gameplay.Shared
         {
             if (health == null)
             {
-                health = GetComponent<BaseHealth>();
+                health = GetComponent<Health>();
                 if (health == null)
                     throw new Exception("No BaseHealth component found on object " + gameObject.name);
             }

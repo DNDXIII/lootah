@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Gameplay.Logic.Loot
 {
-    [RequireComponent(typeof(BaseHealth))]
+    [RequireComponent(typeof(Health))]
     public class EnemyLootGenerator : MonoBehaviour
     {
         [Range(0, 1)] [SerializeField] private float dropChance;
@@ -14,7 +14,7 @@ namespace Gameplay.Logic.Loot
 
         private void Start()
         {
-            if (TryGetComponent<BaseHealth>(out var baseHealth))
+            if (TryGetComponent<Health>(out var baseHealth))
             {
                 baseHealth.OnDie += GenerateLoot;
             }

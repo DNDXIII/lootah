@@ -13,8 +13,11 @@ namespace Gameplay.Abilities.Homing
         [Tooltip("Particle system to play on impact.")] [SerializeField]
         private ParticleSystem impactEffect;
 
-        [Header("Targeting")] [Tooltip("Layer mask for detecting enemies.")] [SerializeField]
+        [Header("Targeting")] [Tooltip("Layer mask for hitting things.")] [SerializeField]
         private LayerMask hittableLayers;
+
+        [Tooltip("Layer mask for detecting new targets.")] [SerializeField]
+        private LayerMask targetingLayers;
 
         [Tooltip("The maximum distance the projectile can travel.")] [SerializeField]
         private float maxDistance = 50f;
@@ -105,7 +108,7 @@ namespace Gameplay.Abilities.Homing
                 verticalOffsetFalloff * Time.deltaTime);
 
             Vector3 targetPosition =
-                (_currentTarget.position + Vector3.up * 1.5f) + (Vector3.up * _currentVerticalOffset);
+                _currentTarget.position + Vector3.up * _currentVerticalOffset;
             Vector3 direction = (targetPosition - transform.position).normalized;
 
             // Gradually increase the rotation speed over time
@@ -148,7 +151,6 @@ namespace Gameplay.Abilities.Homing
 
             if (foundHit)
             {
-                Debug.Log($"Hit {closestHit.collider.name} at {closestHit.point}");
                 // Handle case of casting while already inside a collider
                 if (closestHit.distance <= 0f)
                 {
@@ -205,23 +207,29 @@ namespace Gameplay.Abilities.Homing
 
         private bool TryFindNextTarget(out Transform nextTarget)
         {
-            var colliders = Physics.OverlapSphere(transform.position, maxDistance, hittableLayers);
-            Collider closestCollider = null;
+            var colliders = Physics.OverlapSphere(transform.position, maxDistance, targetingLayers);
+            Transform closestTarget = null;
             float closestDistance = Mathf.Infinity;
 
             foreach (var coll in colliders)
             {
-                if (!coll.TryGetComponent(out Damageable _) || _ignoredColliders.Contains(coll)) continue;
+                if (!coll.TryGetComponent(out Damageable damageable) || _ignoredColliders.Contains(coll)) continue;
 
-                float distance = Vector3.Distance(transform.position, coll.transform.position);
+                if (!damageable.Health.TryGetComponent<Enemy2.Enemy>(out var enemy))
+                {
+                    Debug.LogError("Enemy component not found on damageable object");
+                }
+
+                var target = enemy.Center.transform;
+                float distance = Vector3.Distance(transform.position, target.position);
                 if (!(distance < closestDistance)) continue;
                 closestDistance = distance;
-                closestCollider = coll;
+                closestTarget = target;
             }
 
-            if (closestCollider)
+            if (closestTarget)
             {
-                nextTarget = closestCollider.transform;
+                nextTarget = closestTarget;
                 return true;
             }
 

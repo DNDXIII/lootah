@@ -2,7 +2,7 @@
 
 namespace Gameplay.Shared
 {
-    [RequireComponent(typeof(BaseHealth))]
+    [RequireComponent(typeof(Health))]
     public class BloodDecalSpawner : MonoBehaviour
     {
         [Header("Decal Settings")] [SerializeField]
@@ -13,12 +13,12 @@ namespace Gameplay.Shared
         [SerializeField] private float spawnRadius = 2f;
         [SerializeField] private LayerMask layerMask;
 
-        private BaseHealth _baseHealth;
+        private Health _health;
 
         private void Awake()
         {
-            _baseHealth = GetComponent<BaseHealth>();
-            _baseHealth.OnDamaged += SpawnBloodDecals;
+            _health = GetComponent<Health>();
+            _health.OnDamaged += SpawnBloodDecals;
         }
 
         private void SpawnBloodDecals(float damageAmount, GameObject damageSource)
@@ -43,7 +43,7 @@ namespace Gameplay.Shared
 
         private void OnDisable()
         {
-            _baseHealth.OnDamaged -= SpawnBloodDecals;
+            _health.OnDamaged -= SpawnBloodDecals;
         }
     }
 }

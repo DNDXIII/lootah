@@ -49,12 +49,16 @@ namespace Gameplay.Abilities.Homing
             if (Physics.SphereCast(_camera.transform.position, 3f, _camera.transform.forward,
                     out RaycastHit hit, maxDistance, hittableLayers))
             {
-                if (hit.transform.TryGetComponent(out Damageable _))
+                if (hit.transform.TryGetComponent(out Damageable damageable))
                 {
-                    firstTarget = hit.transform;
+                    if (!damageable.Health.TryGetComponent<Enemy2.Enemy>(out var enemy))
+                    {
+                        Debug.LogError("Enemy component not found on damageable object");
+                    }
+
+                    firstTarget = enemy.Center.transform;
                 }
             }
-
 
             var projectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
             projectile.Initialize(projectileSpeed, maxHits, damage, firstTarget);

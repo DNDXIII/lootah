@@ -143,6 +143,9 @@ GameObject:
   - component: {fileID: 6094298791099085164}
   - component: {fileID: 467775782714099588}
   - component: {fileID: 3359050152140743432}
+  - component: {fileID: 3461103684913849181}
+  - component: {fileID: 5886377463828326870}
+  - component: {fileID: 4853670337881943881}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -359,6 +362,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3461103684913849181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950726106313193431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9dd724692a47f1ab3ffcca7b91de5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPickupPrefab: {fileID: 5156992350374094439, guid: b5a3fff8d35a63c4881a6e2c217483f3, type: 3}
+  minHealthPickupAmount: 1
+  maxHealthPickupAmount: 3
+  spawnRandomDirectionForce: 5
+  spawnUpwardForce: 10
+--- !u!114 &5886377463828326870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950726106313193431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15389ede325747dca5c55e3c28477827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4853670337881943881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950726106313193431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd604ddc74bf4e12b86eccf1f2eb900b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightAttackTickets:
+    easy: 1
+    normal: 2
+    hard: 3
+    nightmare: 4
+  heavyAttackTickets:
+    easy: 1
+    normal: 1
+    hard: 2
+    nightmare: 3
 --- !u!1 &981374986148099034
 GameObject:
   m_ObjectHideFlags: 0

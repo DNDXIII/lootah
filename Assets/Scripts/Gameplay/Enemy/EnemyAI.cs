@@ -24,7 +24,6 @@ namespace Gameplay.Enemy
             }
         }
 
-
         public virtual void Activate()
         {
             Invoke(nameof(SetActive), delayAfterActivation);

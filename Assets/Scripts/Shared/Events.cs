@@ -1,4 +1,5 @@
 using Gameplay.Enemy;
+using Gameplay.Enemy2;
 using Managers;
 using UnityEngine;
 
@@ -43,7 +44,7 @@ namespace Shared
 
     public class EnemyKillEvent : GameEvent
     {
-        public EnemyController Enemy;
+        public Enemy Enemy;
     }
 
     public class PickupEvent : GameEvent

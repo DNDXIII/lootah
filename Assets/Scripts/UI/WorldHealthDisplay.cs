@@ -14,7 +14,7 @@ namespace UI
         [SerializeField] [Tooltip("The health bar image that will be filled based on the health ratio.")]
         private Image healthBarImage;
 
-        [SerializeField] private BaseHealth health;
+        [SerializeField] private Health health;
 
         private void Start()
         {
@@ -36,7 +36,6 @@ namespace UI
         private void UpdateHealthBar()
         {
             healthBarImage.fillAmount = health.GetHealthRatio();
-            Debug.Log($"fillAmount: {healthBarImage.fillAmount}");
 
             if (hideWhenFull)
             {

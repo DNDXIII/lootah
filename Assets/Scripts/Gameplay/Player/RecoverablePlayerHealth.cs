@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Gameplay.Player
 {
-    public class RecoverablePlayerHealth : BaseHealth
+    public class RecoverablePlayerHealth : Health
     {
         [SerializeField] private float maxRecoverableHealth = 30f;
         [SerializeField] private float recoverableHealthDecayDelay = 5f;

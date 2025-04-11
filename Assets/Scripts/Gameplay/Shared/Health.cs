@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Gameplay.Shared
 {
-    public class BaseHealth : MonoBehaviour
+    public class Health : MonoBehaviour
     {
         public UnityAction<float, GameObject> OnDamaged;
         public UnityAction<float> OnHealed;

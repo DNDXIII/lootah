@@ -1,6 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using Gameplay.Enemy;
+using Gameplay.Enemy2;
 using Gameplay.Shared;
 using Managers;
 using UnityEngine;
@@ -24,7 +23,7 @@ namespace Gameplay.Abilities.SpawnFly
         [Header("Upward movement speed decay")] [SerializeField]
         private float upwardSpeedDecay = .1f;
 
-        private EnemyController _closestEnemy;
+        private Enemy2.Enemy _closestEnemy;
         private Rigidbody _rigidbody;
         private float _lastEnemySearchTime = float.MinValue;
         private float _currentUpwardSpeed;
@@ -98,7 +97,7 @@ namespace Gameplay.Abilities.SpawnFly
         private void OnTriggerStay(Collider other)
         {
             if (_isIdle) return;
-            if (!other.TryGetComponent(out EnemyController _)) return;
+            if (!other.TryGetComponent(out Enemy2.Enemy _)) return;
 
             if (other.TryGetComponent(out Damageable damageable))
             {
@@ -109,15 +108,15 @@ namespace Gameplay.Abilities.SpawnFly
         }
 
 
-        private EnemyController FindClosestEnemy()
+        private Enemy2.Enemy FindClosestEnemy()
         {
             var hitColliders = Physics.OverlapSphere(transform.position, searchRadius, enemyLayer);
-            EnemyController closest = null;
+            Enemy2.Enemy closest = null;
             float minDistance = Mathf.Infinity;
 
             foreach (Collider col in hitColliders)
             {
-                EnemyController enemy = col.GetComponent<EnemyController>();
+                Enemy2.Enemy enemy = col.GetComponent<Enemy2.Enemy>();
                 if (!enemy) continue;
 
                 float distance = Vector3.Distance(transform.position, enemy.transform.position);

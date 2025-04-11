@@ -40,8 +40,11 @@
             // --- POSITION SPRING BASED ON CAMERA VELOCITY (INVERSE LAG) ---
             Vector3 camVelocity = (cameraTransform.position - prevCamPos) / deltaTime;
 
-            // Reverse the direction of camera velocity to create "lag" effect
-            Vector3 targetOffset = camVelocity * positionLagMultiplier;
+            // Convert world-space velocity to local space
+            Vector3 localCamVelocity = -cameraTransform.InverseTransformDirection(camVelocity);
+
+            // Reverse direction to simulate lag
+            Vector3 targetOffset = localCamVelocity * positionLagMultiplier;
 
             Vector3 springForce = (targetOffset - positionOffset) * positionSpringStrength;
             Vector3 dampingForce = -positionVelocity * positionDamping;

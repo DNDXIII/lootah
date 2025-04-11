@@ -20,7 +20,7 @@ namespace Gameplay.Player
 
         private void OnEnemyKilled(EnemyKillEvent evt)
         {
-            AddExperience(evt.Enemy.BaseExperience);
+            AddExperience(10);
         }
 
         private void AddExperience(int experience)
@@ -48,7 +48,7 @@ namespace Gameplay.Player
         {
             return _currentLevel * 100;
         }
-        
+
         private void OnDestroy()
         {
             EventManager.RemoveListener<EnemyKillEvent>(OnEnemyKilled);
