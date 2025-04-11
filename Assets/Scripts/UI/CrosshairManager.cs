@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using Gameplay.Managers;
+using Managers;
 using Shared;
 using UnityEngine;
 
@@ -26,8 +27,11 @@ namespace UI
         {
             criticalHitCrosshair.SetActive(true);
             Invoke(nameof(DisableCrosshair), criticalHitDuration);
-            AudioUtility.CreateSfx(critSfx, ActorManager.Instance.Player.transform.position,
-                AudioUtility.AudioGroups.DamageTick, 0f);
+            if (critSfx)
+            {
+                AudioUtility.CreateSfx(critSfx, ActorManager.Instance.Player.transform.position,
+                    AudioUtility.AudioGroups.DamageTick);
+            }
         }
 
         private void DisableCrosshair()

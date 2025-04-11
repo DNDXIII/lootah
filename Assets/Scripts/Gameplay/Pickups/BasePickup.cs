@@ -16,6 +16,9 @@ namespace Gameplay.Pickups
 
             PlayerController pickingPlayer = other.GetComponent<PlayerController>();
 
+            if (!CanPickup(pickingPlayer))
+                return;
+
             if (onPickupSound)
             {
                 AudioUtility.CreateSfx(onPickupSound, transform.position, AudioUtility.AudioGroups.Pickup, 0f);
@@ -26,5 +29,11 @@ namespace Gameplay.Pickups
         }
 
         protected abstract void OnPickup(PlayerController playerController);
+
+        protected virtual bool CanPickup(PlayerController playerController)
+        {
+            // This method can be overridden to add additional checks before allowing the pickup
+            return true;
+        }
     }
 }

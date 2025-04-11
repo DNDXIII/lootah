@@ -1,6 +1,7 @@
 ﻿using System;
 using Gameplay.Inventory;
 using Gameplay.Items;
+using Gameplay.Managers;
 using Managers;
 using UnityEngine;
 using UnityEngine.UI;

@@ -266,7 +266,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dc1bc00271c638640a77ad8a9aa96f46, type: 2}
+  - {fileID: 2100000, guid: 17d6f3cf250df5b4bb5a99e9aca4b505, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onPickupSound: {fileID: 8300000, guid: c41707d6186780a40b2068390005cd97, type: 3}
-  healAmount: 20
+  healAmount: 3
 --- !u!135 &529867324071151974
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 15
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2747677764693795528
 MonoBehaviour:

@@ -1,19 +1,84 @@
-﻿using UnityEngine;
+﻿using Managers;
+using Shared;
+using UnityEngine;
 
 namespace Gameplay.Enemy2
 {
     public abstract class EnemyAttack : MonoBehaviour
     {
-        [Header("Attack Properties")] [Tooltip("The damage dealt by the attack.")] [SerializeField]
+        // Animation
+        private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger");
+
+        [Header("Animation")]
+        [Tooltip("Animator component handling attack animations.")]
+        [SerializeField] 
+        private Animator animator;
+
+        // Sound
+        [Header("Audio")]
+        [Tooltip("Sound effect played during the attack.")]
+        [SerializeField] 
+        private AudioClip attackSfx;
+
+        // Attack Settings
+        [Header("Attack Settings")]
+        [Tooltip("The type of attack the enemy uses.")]
+        [SerializeField] 
+        protected EnemyAttackToken attackType = EnemyAttackToken.Light;
+
+        [Tooltip("The damage dealt by the attack.")]
+        [SerializeField] 
         protected int attackDamage = 20;
 
-        [Header("Shooting Delays")] [Tooltip("The delay before the first shot after charging.")] [SerializeField]
+        // Timing Settings
+        [Header("Attack Timing")]
+        [Tooltip("The delay before the first attack after charging.")]
+        [SerializeField] 
         protected float delayBeforeAttack;
 
-        [Tooltip("The delay between consecutive projectiles in a burst.")] [SerializeField]
+        [Tooltip("The delay after the attack before the next action.")]
+        [SerializeField] 
         protected float delayAfterAttack;
 
-        public abstract bool TryAttack(GameObject target);
-        public bool IsAttacking { get; protected set; }
+        // State
+        [Header("State")]
+        [Tooltip("Indicates whether the enemy is currently attacking.")]
+        public bool IsAttacking { get; private set; }
+
+
+        private bool CanAttack()
+        {
+            return !IsAttacking &&
+                   EnemyAttackTokenManager.Instance.RequestToken(attackType);
+        }
+
+        public bool TryAttack(GameObject target)
+        {
+            if (!CanAttack()) return false;
+            IsAttacking = true;
+            StartAttack(target);
+            return true;
+        }
+
+        protected abstract void StartAttack(GameObject target);
+
+        protected void PlayAttackEffects()
+        {
+            if (animator)
+            {
+                animator.SetTrigger(AttackTrigger);
+            }
+
+            if (attackSfx)
+            {
+                AudioUtility.CreateSfx(attackSfx, transform.position, AudioUtility.AudioGroups.EnemyAttack, .8f);
+            }
+        }
+
+        protected void EndAttack()
+        {
+            IsAttacking = false;
+            EnemyAttackTokenManager.Instance.ReleaseToken(attackType);
+        }
     }
 }

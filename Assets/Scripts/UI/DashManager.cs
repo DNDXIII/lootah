@@ -1,4 +1,5 @@
-﻿using Gameplay.Player;
+﻿using Gameplay.Managers;
+using Gameplay.Player;
 using Managers;
 using UnityEngine;
 using UnityEngine.UI;

@@ -13,5 +13,11 @@ namespace Gameplay.Pickups
             Health playerHealth = playerController.GetComponent<Health>();
             playerHealth.Heal(healAmount);
         }
+
+        protected override bool CanPickup(PlayerController playerController)
+        {
+            Health playerHealth = playerController.GetComponent<Health>();
+            return playerHealth != null && playerHealth.GetHealthRatio() < 1f;
+        }
     }
 }

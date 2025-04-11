@@ -36,6 +36,8 @@ namespace Gameplay.Enemy.Attacks
 
             yield return new WaitForSeconds(attackDuration);
             attackCollider.enabled = false;
+            
+            
         }
 
         // Damage the player if they are in the area while it is active

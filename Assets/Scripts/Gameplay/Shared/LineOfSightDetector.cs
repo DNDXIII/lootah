@@ -18,7 +18,7 @@ namespace Gameplay.Shared
         private LayerMask detectionLayerMask;
 
         [Tooltip("Time interval for updating the enemy's line of sight.")] [SerializeField]
-        private float losUpdateInterval = 0.5f;
+        private float losUpdateInterval = 0.2f;
 
         private float _lastLosUpdate = float.MinValue;
         private bool _lastLosResult;

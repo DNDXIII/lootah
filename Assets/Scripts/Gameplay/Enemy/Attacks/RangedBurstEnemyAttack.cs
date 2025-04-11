@@ -41,6 +41,7 @@ namespace Gameplay.Enemy.Attacks
             {
                 AudioUtility.CreateSfx(chargeSfx, weaponMuzzle.position, AudioUtility.AudioGroups.EnemyAttack, 1f);
             }
+
             yield return new WaitForSeconds(delayBeforeFirstShot);
 
             for (int i = 0; i < numberOfProjectiles; i++)

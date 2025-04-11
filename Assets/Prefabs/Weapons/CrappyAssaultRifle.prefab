@@ -184,7 +184,8 @@ MonoBehaviour:
   bloodEffectPrefab: {fileID: 3494450149275129416, guid: 37638f31818cdf048a341533c6cea9a2, type: 3}
   bulletTrailPrefab: {fileID: -443232460496753036, guid: 2b03f80799689d34893be01d81f0285b, type: 3}
   recoilForce: 1
-  shootSfx: {fileID: 8300000, guid: 263a73e7dc80cf34cae0210f49bfe92c, type: 3}
+  shootSfx:
+  - {fileID: 8300000, guid: 263a73e7dc80cf34cae0210f49bfe92c, type: 3}
   reloadSfx: {fileID: 8300000, guid: ead5b8afb038bf446a8e2207f45533cb, type: 3}
   changeWeaponSfx: {fileID: 8300000, guid: 7b83d61917ac1224f942a0609b1221f2, type: 3}
   reloadTime: 1

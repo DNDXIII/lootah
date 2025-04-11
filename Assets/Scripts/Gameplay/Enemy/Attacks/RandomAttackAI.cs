@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using Gameplay.Managers;
+using Managers;
 using UnityEngine;
 
 namespace Gameplay.Enemy.Attacks

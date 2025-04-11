@@ -1,5 +1,6 @@
 ﻿using System;
 using Gameplay.Enemy.Attacks;
+using Gameplay.Managers;
 using Gameplay.Shared;
 using Managers;
 using UnityEngine;

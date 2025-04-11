@@ -1,5 +1,6 @@
 ﻿using Gameplay.Inventory;
 using Gameplay.Items;
+using Gameplay.Managers;
 using Managers;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Gameplay.Pickups
     public class WeaponPickup : MonoBehaviour
     {
         [SerializeField] private AudioClip pickupSound;
-        private WeaponItem _weaponItem;
+        [SerializeField] private WeaponItem _weaponItem;
 
         public void SetWeapon(WeaponItem weapon) => _weaponItem = weapon;
 

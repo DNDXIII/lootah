@@ -9,6 +9,13 @@ namespace Gameplay.Player
     [RequireComponent(typeof(CharacterController), typeof(RecoverablePlayerHealth), typeof(Damageable))]
     public class PlayerController : MonoBehaviour
     {
+        enum PlayerState
+        {
+            Walking,
+            Jumping,
+            Dashing
+        }
+
         [Header("References")] [Tooltip("Reference to the main camera used for the player")]
         public Camera playerCamera;
 
@@ -20,6 +27,9 @@ namespace Gameplay.Player
 
         [Tooltip("Distance from the bottom of the character controller capsule to test for grounded")]
         public float groundCheckDistance = 0.05f;
+
+        [Tooltip("SFX played when the player is hit")]
+        public AudioClip onHitSfx;
 
         [Header("Movement")] [Tooltip("Max movement speed when grounded (when not sprinting)")]
         public float maxSpeedOnGround = 10f;
@@ -34,8 +44,6 @@ namespace Gameplay.Player
         [Tooltip("Acceleration speed when in the air")]
         public float accelerationSpeedInAir = 25f;
 
-        [Tooltip("Whether the player can sprint")]
-        public bool canSprint = true;
 
         [Tooltip("Multiplicator for the sprint speed (based on grounded speed)")]
         public float sprintSpeedModifier = 2f;
@@ -43,17 +51,13 @@ namespace Gameplay.Player
         [Tooltip("Height at which the player dies instantly when falling off the map")]
         public float killHeight = -50f;
 
-        [Header("Rotation")] [Tooltip("Rotation speed for moving the camera")]
-        public float rotationSpeed = 200f;
-
         [Header("Jump")] [Tooltip("Force applied upward when jumping")]
         public float jumpForce = 9f;
 
-        [Tooltip("SFX played when the player is hit")]
-        public AudioClip onHitSfx;
+        [Tooltip("Max amount of jumps")] public int maxJumpCount = 2;
 
-        [Header("Jump")] [Tooltip("Max amount of jumps")]
-        public int maxJumpCount = 2;
+        [Tooltip("Sound to play when the second jump is used")] [SerializeField]
+        private AudioClip doubleJumpSound;
 
         [Header("Dash Settings")] [Tooltip("Max amount of dashes")]
         public int maxDashCount = 3;
@@ -76,6 +80,7 @@ namespace Gameplay.Player
 
         private PlayerInputHandler _playerInputHandler;
         private CharacterController _controller;
+        private PlayerState _currentState = PlayerState.Walking;
 
         private Vector3 _groundNormal;
         private float _lastTimeJumped;
@@ -152,10 +157,9 @@ namespace Gameplay.Player
                 }
             }
 
-            // TODO Move to the input handler
             // If the player presses the dash key and has a dash charge, start the dash
             // If they are already dashing, queue the dash so it will be executed when the current dash ends
-            if ((Input.GetKeyDown(KeyCode.LeftShift) && _currentDashCount > 0) || _dashQueued)
+            if ((_playerInputHandler.GetSprintInputHeld() && _currentDashCount > 0) || _dashQueued)
             {
                 if (!_dashQueued && _isDashing)
                 {
@@ -181,8 +185,11 @@ namespace Gameplay.Player
             _dashDirection = moveInput.sqrMagnitude > 0f
                 ? transform.TransformVector(moveInput).normalized
                 : transform.forward; // Fallback to facing direction if no input
-            // Ensure there's movement input
-            AudioUtility.CreateSfx(dashSfx, transform.position, AudioUtility.AudioGroups.PlayerMovement, 0f);
+            if (dashSfx)
+            {
+                AudioUtility.CreateSfx(dashSfx, transform.position, AudioUtility.AudioGroups.PlayerMovement, 0f);
+            }
+
             _isDashing = true;
             _dashQueued = false;
             _dashStartTime = Time.time;
@@ -260,10 +267,7 @@ namespace Gameplay.Player
 
 
             // character movement handling
-            bool isSprinting = _playerInputHandler.GetSprintInputHeld() && canSprint;
             {
-                float speedModifier = isSprinting ? sprintSpeedModifier : 1f;
-
                 // converts move input to a worldspace vector based on our character's transform orientation
                 Vector3 worldspaceMoveInput = transform.TransformVector(_playerInputHandler.GetMoveInput());
 
@@ -285,12 +289,18 @@ namespace Gameplay.Player
                     // Force grounding to false
                     IsGrounded = false;
                     _groundNormal = Vector3.up;
+
+                    if (doubleJumpSound && _currentJumpCount == 0)
+                    {
+                        AudioUtility.CreateSfx(doubleJumpSound, transform.position,
+                            AudioUtility.AudioGroups.PlayerMovement);
+                    }
                 }
                 // handle grounded movement
                 else if (IsGrounded)
                 {
                     // calculate the desired velocity from inputs, max speed, and current slope
-                    Vector3 targetVelocity = worldspaceMoveInput * (maxSpeedOnGround * speedModifier);
+                    Vector3 targetVelocity = worldspaceMoveInput * maxSpeedOnGround;
                     targetVelocity = GetDirectionReorientedOnSlope(targetVelocity.normalized, _groundNormal) *
                                      targetVelocity.magnitude;
 
@@ -329,7 +339,7 @@ namespace Gameplay.Player
                 // rotate the transform with the input speed around its local Y axis
                 transform.Rotate(
                     new Vector3(0f,
-                        (_playerInputHandler.GetLookInputsHorizontal() * rotationSpeed),
+                        _playerInputHandler.GetLookInputsHorizontal(),
                         0f), Space.Self);
             }
 
@@ -337,7 +347,7 @@ namespace Gameplay.Player
             {
                 // add vertical inputs to the camera's vertical angle
                 _cameraVerticalAngle +=
-                    _playerInputHandler.GetLookInputsVertical() * rotationSpeed;
+                    _playerInputHandler.GetLookInputsVertical();
 
                 // limit the camera's vertical angle to min/max
                 _cameraVerticalAngle = Mathf.Clamp(_cameraVerticalAngle, -89f, 89f);
@@ -346,6 +356,8 @@ namespace Gameplay.Player
                 playerCamera.transform.localEulerAngles = new Vector3(_cameraVerticalAngle, 0, 0);
             }
         }
+
+        #region Helpers
 
         // Gets a reoriented direction that is tangent to a given slope
         private Vector3 GetDirectionReorientedOnSlope(Vector3 direction, Vector3 slopeNormal)
@@ -379,5 +391,7 @@ namespace Gameplay.Player
             Gizmos.color = Color.green;
             Gizmos.DrawRay(transform.position, transform.forward);
         }
+
+        #endregion
     }
 }

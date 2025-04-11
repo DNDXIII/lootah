@@ -3,6 +3,7 @@ using System.Collections;
 using Gameplay.Effects;
 using Gameplay.Shared;
 using Gameplay.Weapons.WeaponGeneration;
+using Managers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -59,7 +60,7 @@ namespace Gameplay.Weapons
         public float recoilForce = 1f;
 
         [Tooltip("Audio played when shooting")]
-        public AudioClip shootSfx;
+        public AudioClip[] shootSfx;
 
         [Tooltip("Audio played when reloading")]
         public AudioClip reloadSfx;
@@ -221,9 +222,11 @@ namespace Gameplay.Weapons
 
             _lastTimeShot = Time.time;
 
-            if (shootSfx)
+            if (shootSfx.Length > 0)
             {
-                _shootAudioSource.PlayOneShot(shootSfx);
+                int randomIndex = UnityEngine.Random.Range(0, shootSfx.Length);
+                AudioUtility.CreateSfx(shootSfx[randomIndex], transform.position,
+                    AudioUtility.AudioGroups.WeaponShoot, 0f);
             }
 
             if (_animator)

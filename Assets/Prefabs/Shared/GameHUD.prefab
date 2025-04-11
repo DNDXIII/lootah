@@ -3068,7 +3068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criticalHitCrosshair: {fileID: 954255380619402871}
   criticalHitDuration: 0.1
-  critSfx: {fileID: 8300000, guid: 9c793d7183ca03e4fbf328175291cee4, type: 3}
+  critSfx: {fileID: 0}
 --- !u!1 &7165968901230436585
 GameObject:
   m_ObjectHideFlags: 0
