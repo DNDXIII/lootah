@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using System;
+using Managers;
 using Shared;
 using UnityEngine;
 
@@ -9,35 +10,25 @@ namespace Gameplay.Enemy2
         // Animation
         private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger");
 
-        [Header("Animation")]
-        [Tooltip("Animator component handling attack animations.")]
-        [SerializeField] 
+        [Header("Animation")] [Tooltip("Animator component handling attack animations.")] [SerializeField]
         private Animator animator;
 
         // Sound
-        [Header("Audio")]
-        [Tooltip("Sound effect played during the attack.")]
-        [SerializeField] 
+        [Header("Audio")] [Tooltip("Sound effect played during the attack.")] [SerializeField]
         private AudioClip attackSfx;
 
         // Attack Settings
-        [Header("Attack Settings")]
-        [Tooltip("The type of attack the enemy uses.")]
-        [SerializeField] 
+        [Header("Attack Settings")] [Tooltip("The type of attack the enemy uses.")] [SerializeField]
         protected EnemyAttackToken attackType = EnemyAttackToken.Light;
 
-        [Tooltip("The damage dealt by the attack.")]
-        [SerializeField] 
+        [Tooltip("The damage dealt by the attack.")] [SerializeField]
         protected int attackDamage = 20;
 
         // Timing Settings
-        [Header("Attack Timing")]
-        [Tooltip("The delay before the first attack after charging.")]
-        [SerializeField] 
+        [Header("Attack Timing")] [Tooltip("The delay before the first attack after charging.")] [SerializeField]
         protected float delayBeforeAttack;
 
-        [Tooltip("The delay after the attack before the next action.")]
-        [SerializeField] 
+        [Tooltip("The delay after the attack before the next action.")] [SerializeField]
         protected float delayAfterAttack;
 
         // State
@@ -79,6 +70,13 @@ namespace Gameplay.Enemy2
         {
             IsAttacking = false;
             EnemyAttackTokenManager.Instance.ReleaseToken(attackType);
+        }
+
+        private void OnDisable()
+        {
+            if (!IsAttacking) return;
+            EnemyAttackTokenManager.Instance.ReleaseToken(attackType);
+            IsAttacking = false;
         }
     }
 }

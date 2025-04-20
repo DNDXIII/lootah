@@ -36,7 +36,7 @@ namespace Gameplay.Enemy2
             for (int i = 0; i < numberOfProjectiles; i++)
             {
                 // Check if the enemy has been destroyed in the meantime
-                // if (EnemyController.IsDead) yield break;
+                if (!IsAttacking) yield break;
 
                 Vector3 shotDirection = GetShotDirectionWithinSpread(target);
                 var projectile = Instantiate(projectilePrefab, weaponMuzzle.position,
