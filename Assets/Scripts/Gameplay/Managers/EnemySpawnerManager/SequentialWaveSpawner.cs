@@ -2,12 +2,13 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Managers.EnemySpawnerManager
+namespace Gameplay.Managers.EnemySpawnerManager
 {
     public class SequentialWaveSpawner : MonoBehaviour
     {
         [SerializeField] private float delayAfterWave = 1f;
 
+        [SerializeField] private bool startOnAwake = false;
         [SerializeField] private UnityEvent onWavesEnd;
 
         private int _currentWave;
@@ -27,9 +28,16 @@ namespace Managers.EnemySpawnerManager
             }
         }
 
+        private void Start()
+        {
+            if (startOnAwake)
+            {
+                SpawnWave();
+            }
+        }
+
         public void SpawnWave()
         {
-            // find a random wave spawner
             var waveToSpawn = _waveEnemySpawners[_currentWave];
             waveToSpawn.SpawnWave();
             _currentWave++;

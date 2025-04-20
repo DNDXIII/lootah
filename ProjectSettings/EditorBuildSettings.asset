@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/BaseScene.unity
     guid: 9de84e2aa46c7654db4e1e010ce2919b
   - enabled: 0
-    path: Assets/Scenes/FirstLevel.unity
-    guid: 3d1291c7a14657d4dbc60cfacc3f09f2
-  - enabled: 0
     path: Assets/Scenes/SecondLevel.unity
     guid: efb4b8e9cbe042748a26ddfaf8a97309
   - enabled: 0
@@ -32,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/arena_01.unity
     guid: 67d8917258ec1f5468a0f577188f5d8a
+  - enabled: 1
+    path: Assets/Scenes/arena_02.unity
+    guid: 4378db8bc143f9a40914c05620ae1749
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 82a84be349028a3478c43d976b2672f3, type: 2}
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}

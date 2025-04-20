@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53310e935c24489b17a7efae012889e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 13
+  maxHealth: 20
 --- !u!114 &299676752385512216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,6 +640,8 @@ MonoBehaviour:
   - rid: 2828233527163617419
   - rid: 2828233546571449217
   - rid: 2828233546571449218
+  - rid: 2828233552298770598
+  - rid: 2828233552298770599
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -685,6 +687,22 @@ MonoBehaviour:
           m_Value1: 2681265016051153098
         Name: RangeDetector
         m_Value: {fileID: 4500353247077524826}
+    - rid: 2828233552298770598
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6482488096286147300
+          m_Value1: 415956147024172635
+        Name: MoveSpeed
+        m_Value: 3
+    - rid: 2828233552298770599
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6581074780460100223
+          m_Value1: 788477991840898666
+        Name: SidestepDuration
+        m_Value: 1
 --- !u!114 &2691072567026997950
 MonoBehaviour:
   m_ObjectHideFlags: 0

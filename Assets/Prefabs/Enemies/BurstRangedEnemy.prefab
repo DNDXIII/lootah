@@ -677,7 +677,7 @@ MonoBehaviour:
           m_Value0: 6482488096286147300
           m_Value1: 415956147024172635
         Name: MoveSpeed
-        m_Value: 2
+        m_Value: 5
     - rid: 2828233527163617499
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -685,7 +685,7 @@ MonoBehaviour:
           m_Value0: 9114097841153072385
           m_Value1: 9741707070364362365
         Name: SidestepDistance
-        m_Value: 0
+        m_Value: 2
     - rid: 2828233546571449288
       type: {class: 'BlackboardVariable`1[[Gameplay.Shared.RangeDetector, Gameplay]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:

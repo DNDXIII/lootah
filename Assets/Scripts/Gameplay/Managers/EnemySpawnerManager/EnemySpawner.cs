@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Managers;
 using Shared;
@@ -35,6 +36,7 @@ namespace Gameplay.Managers.EnemySpawnerManager
         //  If we used the count they might not have been all spawned yet
         public int EnemyCount => _spawnPoints.Length;
 
+        public Action OnEnemiesKilled;
 
         private void Awake()
         {
@@ -96,6 +98,7 @@ namespace Gameplay.Managers.EnemySpawnerManager
             _enemies.Remove(enemyController);
 
             if (_enemies.Count != 0) return;
+            OnEnemiesKilled?.Invoke();
             onEnemiesDead.Invoke();
 
             if (destroyOnDeath)
