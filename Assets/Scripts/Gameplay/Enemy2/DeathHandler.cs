@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using Gameplay.Shared;
 using Unity.Behavior;
 using UnityEngine;
@@ -53,6 +54,8 @@ namespace Gameplay.Enemy2
                 _navMeshAgent.isStopped = true;
                 _navMeshAgent.enabled = false;
             }
+
+            Destroy(gameObject, 5f);
         }
     }
 }

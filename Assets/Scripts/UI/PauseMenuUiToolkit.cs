@@ -34,7 +34,6 @@ namespace UI
             _quitGameButton.RegisterCallback<ClickEvent>(OnQuitGameButton);
         }
 
-
         public void SetActive(bool isActive)
         {
             _document.rootVisualElement.style.display = isActive ? DisplayStyle.Flex : DisplayStyle.None;

@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using Gameplay.Shared;
+using Managers;
 using Shared;
 using UnityEngine;
 using UnityEngine.UI;

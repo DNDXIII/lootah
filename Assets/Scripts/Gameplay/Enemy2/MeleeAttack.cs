@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using Gameplay.Shared;
 using UnityEngine;
 
@@ -18,21 +19,21 @@ namespace Gameplay.Enemy2
 
         protected override void StartAttack(GameObject target)
         {
-            StartCoroutine(PerformAttack());
+            PerformAttack().Forget();
         }
 
-        private IEnumerator PerformAttack()
+        private async UniTaskVoid PerformAttack()
         {
             PlayAttackEffects();
 
-            yield return new WaitForSeconds(delayBeforeAttack);
+            await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeAttack));
 
             attackCollider.enabled = true;
 
-            yield return new WaitForSeconds(attackDuration);
+            await UniTask.Delay(TimeSpan.FromSeconds(attackDuration));
             attackCollider.enabled = false;
 
-            yield return new WaitForSeconds(delayAfterAttack);
+            await UniTask.Delay(TimeSpan.FromSeconds(delayAfterAttack));
 
             EndAttack();
         }

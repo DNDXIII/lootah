@@ -1,9 +1,7 @@
-using Gameplay.Enemy;
-using Gameplay.Enemy2;
 using Managers;
 using UnityEngine;
 
-namespace Shared
+namespace Gameplay.Shared
 {
     // The Game Events used across the Game.
     // Anytime there is a need for a new event, it should be added here.
@@ -44,7 +42,7 @@ namespace Shared
 
     public class EnemyKillEvent : GameEvent
     {
-        public Enemy Enemy;
+        public Enemy2.Enemy Enemy;
     }
 
     public class PickupEvent : GameEvent

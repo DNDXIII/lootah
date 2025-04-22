@@ -11,6 +11,7 @@ namespace Gameplay.Player
 
         private bool _fireInputWasHeld;
         private bool _jumpInputWasHeld;
+        private bool _dashInputWasHeld;
 
         private PlayerInputsManager _playerInputsManager;
 
@@ -27,6 +28,7 @@ namespace Gameplay.Player
         {
             _fireInputWasHeld = GetFireInputHeld();
             _jumpInputWasHeld = GetJumpInputHeld();
+            _dashInputWasHeld = GetSprintInputHeld();
         }
 
         private bool CanProcessInput()
@@ -93,6 +95,11 @@ namespace Gameplay.Player
         public bool GetSprintInputHeld()
         {
             return CanProcessInput() && _playerInputsManager.sprint;
+        }
+
+        public bool GetSprintInputDown()
+        {
+            return GetSprintInputHeld() && !_dashInputWasHeld;
         }
 
         public bool GetReloadButtonDown()

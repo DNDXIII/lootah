@@ -3,19 +3,13 @@ using Managers;
 using Shared;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using PrimeTween;
 
 namespace Gameplay.Player
 {
     [RequireComponent(typeof(CharacterController), typeof(RecoverablePlayerHealth), typeof(Damageable))]
     public class PlayerController : MonoBehaviour
     {
-        enum PlayerState
-        {
-            Walking,
-            Jumping,
-            Dashing
-        }
-
         [Header("References")] [Tooltip("Reference to the main camera used for the player")]
         public Camera playerCamera;
 
@@ -80,7 +74,6 @@ namespace Gameplay.Player
 
         private PlayerInputHandler _playerInputHandler;
         private CharacterController _controller;
-        private PlayerState _currentState = PlayerState.Walking;
 
         private Vector3 _groundNormal;
         private float _lastTimeJumped;
@@ -159,7 +152,7 @@ namespace Gameplay.Player
 
             // If the player presses the dash key and has a dash charge, start the dash
             // If they are already dashing, queue the dash so it will be executed when the current dash ends
-            if ((_playerInputHandler.GetSprintInputHeld() && _currentDashCount > 0) || _dashQueued)
+            if ((_playerInputHandler.GetSprintInputDown() && _currentDashCount > 0) || _dashQueued)
             {
                 if (!_dashQueued && _isDashing)
                 {

@@ -1,4 +1,5 @@
-﻿using Shared;
+﻿using Gameplay.Shared;
+using Shared;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
