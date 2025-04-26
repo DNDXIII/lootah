@@ -1,7 +1,8 @@
 ﻿using System;
 using Shared;
+using Sirenix.OdinInspector;
 
-namespace Managers
+namespace Gameplay.Managers
 {
     public class GameSettingsManager : Singleton<GameSettingsManager>
     {
@@ -9,6 +10,7 @@ namespace Managers
 
         private GameDifficulty _gameDifficulty = GameDifficulty.Normal;
 
+        [ShowInInspector]
         public GameDifficulty GameDifficulty
         {
             get => _gameDifficulty;

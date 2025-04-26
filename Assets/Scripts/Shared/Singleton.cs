@@ -7,6 +7,18 @@ namespace Shared
     {
         private static T _instance;
 
+        // Method that tries to return the instance, but if it doesn't exist, returns false
+        public static bool TryGetInstance(out T instance)
+        {
+            if (_instance)
+            {
+                instance = _instance;
+                return true;
+            }
+            instance = null;
+            return false;
+        }
+
         public static T Instance
         {
             get

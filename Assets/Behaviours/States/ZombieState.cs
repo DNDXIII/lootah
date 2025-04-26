@@ -1,6 +1,6 @@
 using Unity.Behavior;
 
-namespace Behaviours
+namespace Behaviours.States
 {
     [BlackboardEnum]
     public enum ZombieState

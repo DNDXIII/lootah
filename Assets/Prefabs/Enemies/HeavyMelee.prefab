@@ -91,11 +91,10 @@ GameObject:
   - component: {fileID: 5549711434850783920}
   - component: {fileID: 699292392548580950}
   - component: {fileID: 3628011986096372868}
-  - component: {fileID: 4803417292518994846}
   - component: {fileID: 3693591266925050800}
   - component: {fileID: 1909885600973717768}
   m_Layer: 3
-  m_Name: MeleeEnemy
+  m_Name: HeavyMelee
   m_TagString: Enemy
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -111,7 +110,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9, y: 0, z: 12.64}
-  m_LocalScale: {x: 1.05, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7428955265102039931}
@@ -237,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Graph: {fileID: 6304737720048704872, guid: 4071bf974bbe54f4dad404d51eb63303, type: 2}
+  m_Graph: {fileID: 6304737720048704872, guid: cc373321223a3be4e90b770cac227f6a, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 2828233333559263831
   - rid: 2828233335837295205
@@ -271,8 +270,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 3649495132811758563
           m_Value1: 5101734532555792478
-        Name: LightAttack
-        m_Value: {fileID: 4710634449308790411}
+        Name: ChargeAttack
+        m_Value: {fileID: 8670484289215243930}
     - rid: 2828233527163617374
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -280,7 +279,7 @@ MonoBehaviour:
           m_Value0: 11684108031858885312
           m_Value1: 12422843633641594770
         Name: StoppingDistance
-        m_Value: 1
+        m_Value: 15
     - rid: 2828233546571449289
       type: {class: 'BlackboardVariable`1[[Gameplay.Shared.RangeDetector, Gameplay]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -289,24 +288,6 @@ MonoBehaviour:
           m_Value1: 15562005045759838899
         Name: RangeDetector
         m_Value: {fileID: 3693591266925050800}
---- !u!114 &4803417292518994846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000153535332611808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eed62da0b1c64095930a3a424dfe5ade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDetectionDistance: 30
-  detectionTransform: {fileID: 0}
-  detectionLayerMask:
-    serializedVersion: 2
-    m_Bits: 201
-  losUpdateInterval: 0.5
 --- !u!114 &3693591266925050800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,7 +698,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1101886864, guid: a0eff1b791e3c284e9481016b9f5b550, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.72816753, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -786,9 +767,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2850740796983336094}
   - component: {fileID: 3143792769750009173}
-  - component: {fileID: 4710634449308790411}
+  - component: {fileID: 8670484289215243930}
   m_Layer: 2
-  m_Name: LightAttack
+  m_Name: ChargeAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -830,7 +811,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 4}
   m_Center: {x: 0, y: 1.5, z: 2}
---- !u!114 &4710634449308790411
+--- !u!114 &8670484289215243930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -839,18 +820,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7398707065800927590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab844c097c04e2e8aeecb616fdbaac4, type: 3}
+  m_Script: {fileID: 11500000, guid: d9e0cf0f8fee4d50a1e8551bde6d143e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8927736759560201606}
   attackSfx: {fileID: 8300000, guid: bad3b9d84ab694f45902ae1c06de8eca, type: 3}
   attackType: 0
-  attackDamage: 30
-  delayBeforeAttack: 0.25
-  delayAfterAttack: 0.25
+  attackDamage: 20
+  delayBeforeAttack: 1
+  delayAfterAttack: 1.5
   health: {fileID: 9076982286766757746}
+  overshootDistance: 3
+  chargeSpeed: 25
+  chargeAcceleration: 50
+  attackDuration: 2
+  attackAnimationBoolName: ChargeAttack
+  navMeshAgent: {fileID: 339331384911118623}
   attackCollider: {fileID: 3143792769750009173}
-  attackDuration: 0.3
+  enemyAnimationController: {fileID: 1909885600973717768}
 --- !u!1 &8100556161043168644
 GameObject:
   m_ObjectHideFlags: 0

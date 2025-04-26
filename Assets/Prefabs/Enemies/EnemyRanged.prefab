@@ -711,6 +711,7 @@ MonoBehaviour:
   attackDamage: 20
   delayBeforeAttack: 0.5
   delayAfterAttack: 1
+  health: {fileID: 3566755714921264745}
   projectilePrefab: {fileID: 8860548218057244454, guid: 144e556da3d1e404bae6ecd03f7cbceb, type: 3}
   numberOfProjectiles: 1
   delayBetweenProjectiles: 0

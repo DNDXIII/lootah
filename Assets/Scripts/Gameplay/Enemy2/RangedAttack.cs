@@ -27,33 +27,18 @@ namespace Gameplay.Enemy2
 
         private CancellationTokenSource _cancellationToken;
 
-        private void Awake()
-        {
-            if (TryGetComponent<Health>(out var health))
-            {
-                health.OnDie += OnDie;
-            }
-        }
-
-        private void OnDie()
-        {
-            _cancellationToken?.Cancel();
-            _cancellationToken = null;
-
-            if (IsAttacking)
-            {
-                // Release the attack token if the enemy dies while attacking
-                EndAttack();
-            }
-        }
-
-
         protected override void StartAttack(GameObject target)
         {
             _cancellationToken?.Cancel();
             _cancellationToken = new CancellationTokenSource();
             ShootBurst(target, _cancellationToken.Token)
                 .Forget();
+        }
+
+        protected override void CancelAttack()
+        {
+            _cancellationToken?.Cancel();
+            _cancellationToken = null;
         }
 
         private async UniTaskVoid ShootBurst(GameObject target, CancellationToken cancellationToken)

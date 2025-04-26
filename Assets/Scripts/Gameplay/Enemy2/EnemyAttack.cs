@@ -1,6 +1,9 @@
-﻿using Gameplay.Managers;
+﻿using System;
+using Gameplay.Managers;
+using Gameplay.Shared;
 using Managers;
 using Shared;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Gameplay.Enemy2
@@ -36,6 +39,23 @@ namespace Gameplay.Enemy2
         [Tooltip("Indicates whether the enemy is currently attacking.")]
         public bool IsAttacking { get; private set; }
 
+        [Header("References")] [SerializeField] [Required]
+        private Health health;
+
+        protected virtual void Start()
+        {
+            health.OnDie += OnDie;
+        }
+
+        private void OnDie()
+        {
+            if (!IsAttacking) return;
+            // Cancel the attack if the enemy dies while attacking
+            CancelAttack();
+            // Release the attack token if the enemy dies while attacking
+            EndAttack();
+        }
+
 
         private bool CanAttack()
         {
@@ -53,6 +73,8 @@ namespace Gameplay.Enemy2
 
         protected abstract void StartAttack(GameObject target);
 
+        protected abstract void CancelAttack();
+
         protected void PlayAttackEffects()
         {
             if (animator)
@@ -69,7 +91,11 @@ namespace Gameplay.Enemy2
         protected void EndAttack()
         {
             IsAttacking = false;
-            EnemyAttackTokenManager.Instance.ReleaseToken(attackType);
+            // It is possible that the token manager is destroyed, if the scene is getting unloaded
+            if (EnemyAttackTokenManager.TryGetInstance(out var tokenManager))
+            {
+                tokenManager.ReleaseToken(attackType);
+            }
         }
 
         private void OnDisable()

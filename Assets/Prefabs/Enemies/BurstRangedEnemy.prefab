@@ -487,7 +487,6 @@ GameObject:
   - component: {fileID: 3477079793225495536}
   - component: {fileID: 2691072567026997950}
   - component: {fileID: 6775010292650977460}
-  - component: {fileID: 5996027763267787746}
   - component: {fileID: -4500083860901218173}
   - component: {fileID: 5876869272221607924}
   m_Layer: 3
@@ -730,34 +729,12 @@ MonoBehaviour:
   attackDamage: 15
   delayBeforeAttack: 0.5
   delayAfterAttack: 1
+  health: {fileID: 3566755714921264745}
   projectilePrefab: {fileID: 8860548218057244454, guid: 144e556da3d1e404bae6ecd03f7cbceb, type: 3}
   numberOfProjectiles: 4
   delayBetweenProjectiles: 0.25
   weaponMuzzle: {fileID: 3229062431254275089}
   weaponSpreadAngle: 1
---- !u!114 &5996027763267787746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6107562233036704090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e2ebca182cb44e08b6921be0e193dc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 8866994242048993506}
-  attackSfx: {fileID: 8300000, guid: 960e9835225be3147852e3bffa95621b, type: 3}
-  attackType: 1
-  attackDamage: 40
-  delayBeforeAttack: 2
-  delayAfterAttack: 1
-  projectilePrefab: {fileID: 8860548218057244454, guid: 3cf630e5353dc354485bd06f8198ed8f, type: 3}
-  numberOfProjectiles: 1
-  delayBetweenProjectiles: 0
-  weaponMuzzle: {fileID: 3229062431254275089}
-  weaponSpreadAngle: 0
 --- !u!114 &-4500083860901218173
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gameplay.Shared;
 using UnityEngine;
@@ -10,6 +10,8 @@ namespace Gameplay.Enemy2
         [SerializeField] private Collider attackCollider;
         [SerializeField] private float attackDuration = 0.5f;
 
+        private CancellationTokenSource _cancellationToken;
+
         private void Awake()
         {
             attackCollider.isTrigger = true;
@@ -19,21 +21,29 @@ namespace Gameplay.Enemy2
 
         protected override void StartAttack(GameObject target)
         {
-            PerformAttack().Forget();
+            _cancellationToken?.Cancel();
+            _cancellationToken = new CancellationTokenSource();
+            PerformAttack(_cancellationToken.Token).Forget();
         }
 
-        private async UniTaskVoid PerformAttack()
+        protected override void CancelAttack()
+        {
+            _cancellationToken?.Cancel();
+            _cancellationToken = null;
+        }
+
+        private async UniTaskVoid PerformAttack(CancellationToken token)
         {
             PlayAttackEffects();
 
-            await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeAttack));
+            await UniTask.WaitForSeconds(delayBeforeAttack, cancellationToken: token);
 
             attackCollider.enabled = true;
 
-            await UniTask.Delay(TimeSpan.FromSeconds(attackDuration));
+            await UniTask.WaitForSeconds(attackDuration, cancellationToken: token);
             attackCollider.enabled = false;
 
-            await UniTask.Delay(TimeSpan.FromSeconds(delayAfterAttack));
+            await UniTask.WaitForSeconds(delayAfterAttack, cancellationToken: token);
 
             EndAttack();
         }

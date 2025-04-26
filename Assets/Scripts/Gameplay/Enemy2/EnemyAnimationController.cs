@@ -29,5 +29,36 @@ namespace Gameplay.Enemy2
         {
             animator.SetBool(IsDeadAnimationHash, true);
         }
+
+        public void SetTrigger(string triggerName)
+        {
+            SetTrigger(Animator.StringToHash(triggerName));
+        }
+
+        public void SetTrigger(int triggerHash)
+        {
+            animator.SetTrigger(triggerHash);
+        }
+
+        public void SetBool(string boolName, bool value)
+        {
+            SetBool(Animator.StringToHash(boolName), value);
+        }
+
+        public void SetBool(int boolHash, bool value)
+        {
+            animator.SetBool(boolHash, value);
+        }
+
+        public void PlayAnimation(string animationName)
+        {
+            PlayAnimation(Animator.StringToHash(animationName));
+        }
+
+
+        public void PlayAnimation(int animationHash)
+        {
+            animator.Play(animationHash);
+        }
     }
 }
