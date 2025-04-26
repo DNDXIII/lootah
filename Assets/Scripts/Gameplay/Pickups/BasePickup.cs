@@ -25,7 +25,6 @@ namespace Gameplay.Pickups
             }
 
             OnPickup(pickingPlayer);
-            Destroy(gameObject);
         }
 
         protected abstract void OnPickup(PlayerController playerController);

@@ -10,6 +10,8 @@ namespace Gameplay.Enemy2
     [RequireComponent(typeof(Health))]
     public class Enemy : MonoBehaviour
     {
+        
+        // TODO: Look at and implement things from there https://youtu.be/2l3vLLmrX7Q 
         [SerializeField] private Transform center;
 
 

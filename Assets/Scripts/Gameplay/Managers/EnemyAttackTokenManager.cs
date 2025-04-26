@@ -1,8 +1,9 @@
 ﻿using System;
+using Managers;
 using Shared;
 using UnityEngine;
 
-namespace Managers
+namespace Gameplay.Managers
 {
     public class EnemyAttackTokenManager : Singleton<EnemyAttackTokenManager>
     {

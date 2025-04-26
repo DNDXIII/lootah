@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using Gameplay.Shared;
 using Gameplay.Weapons;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -22,32 +25,60 @@ namespace Gameplay.Enemy2
         [Tooltip("The spread angle in degrees for projectiles.")] [SerializeField]
         private float weaponSpreadAngle = 10f;
 
+        private CancellationTokenSource _cancellationToken;
+
+        private void Awake()
+        {
+            if (TryGetComponent<Health>(out var health))
+            {
+                health.OnDie += OnDie;
+            }
+        }
+
+        private void OnDie()
+        {
+            _cancellationToken?.Cancel();
+            _cancellationToken = null;
+
+            if (IsAttacking)
+            {
+                // Release the attack token if the enemy dies while attacking
+                EndAttack();
+            }
+        }
+
 
         protected override void StartAttack(GameObject target)
         {
-            StartCoroutine(ShootBurst(target));
+            _cancellationToken?.Cancel();
+            _cancellationToken = new CancellationTokenSource();
+            ShootBurst(target, _cancellationToken.Token)
+                .Forget();
         }
 
-        private IEnumerator ShootBurst(GameObject target)
+        private async UniTaskVoid ShootBurst(GameObject target, CancellationToken cancellationToken)
         {
             PlayAttackEffects();
 
-            yield return new WaitForSeconds(delayBeforeAttack);
+
+            await UniTask.Delay(TimeSpan.FromSeconds(delayBeforeAttack), cancellationToken: cancellationToken);
+
             for (int i = 0; i < numberOfProjectiles; i++)
             {
                 // Check if the enemy has been destroyed in the meantime
-                if (!IsAttacking) yield break;
+                if (!IsAttacking)
+                    break;
 
                 Vector3 shotDirection = GetShotDirectionWithinSpread(target);
                 var projectile = Instantiate(projectilePrefab, weaponMuzzle.position,
                     Quaternion.LookRotation(shotDirection));
                 projectile.Shoot(gameObject, attackDamage);
 
-                yield return new WaitForSeconds(delayBetweenProjectiles);
+                await UniTask.Delay(TimeSpan.FromSeconds(delayBetweenProjectiles),
+                    cancellationToken: cancellationToken);
             }
 
-            yield return new WaitForSeconds(delayAfterAttack);
-
+            await UniTask.Delay(TimeSpan.FromSeconds(delayAfterAttack), cancellationToken: cancellationToken);
             EndAttack();
         }
 

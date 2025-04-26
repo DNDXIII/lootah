@@ -5648,11 +5648,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5031076661795990650, guid: aecebf576c309fb489218facd36ccf87, type: 3}
       propertyPath: _weaponItem.BulletsPerShot
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5031076661795990650, guid: aecebf576c309fb489218facd36ccf87, type: 3}
       propertyPath: _weaponItem.BulletSpreadAngle
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5031076661795990650, guid: aecebf576c309fb489218facd36ccf87, type: 3}
       propertyPath: _weaponItem.DelayBetweenShots

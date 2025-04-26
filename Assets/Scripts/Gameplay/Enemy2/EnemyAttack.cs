@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Gameplay.Managers;
 using Managers;
 using Shared;
 using UnityEngine;
@@ -75,8 +75,7 @@ namespace Gameplay.Enemy2
         private void OnDisable()
         {
             if (!IsAttacking) return;
-            EnemyAttackTokenManager.Instance.ReleaseToken(attackType);
-            IsAttacking = false;
+            EndAttack();
         }
     }
 }

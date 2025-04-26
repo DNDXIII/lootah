@@ -10,6 +10,7 @@ namespace Gameplay.Pickups
         protected override void OnPickup(PlayerController playerController)
         {
             playerController.GetComponent<PlayerKeyManager>().AddKey(keyType);
+            Destroy(gameObject);
         }
     }
 }
