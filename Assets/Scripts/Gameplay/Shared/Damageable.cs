@@ -1,6 +1,5 @@
 ﻿using System;
 using Managers;
-using Shared;
 using UnityEngine;
 
 namespace Gameplay.Shared
@@ -32,6 +31,19 @@ namespace Gameplay.Shared
             }
 
             health.OnDie += OnDie;
+            health.OnReset += OnReset;
+        }
+
+        private void OnDestroy()
+        {
+            health.OnDie -= OnDie;
+            health.OnReset -= OnReset;
+        }
+
+        private void OnReset()
+        {
+            // enable the collider so that the player can hit this player again
+            _collider.enabled = true;
         }
 
         private void OnDie()

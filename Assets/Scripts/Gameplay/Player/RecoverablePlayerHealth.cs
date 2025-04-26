@@ -20,7 +20,7 @@ namespace Gameplay.Player
         public float GetRecoverableHealth() => _recoverableHealth;
 
         public float GetHealthAndRecoverableHealthRatio() =>
-            (CurrentHealth + _recoverableHealth) / maxHealth;
+            (CurrentHealth + _recoverableHealth) / MaxHealth;
 
         protected override void Start()
         {

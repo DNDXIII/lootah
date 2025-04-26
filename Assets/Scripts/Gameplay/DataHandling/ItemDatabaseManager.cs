@@ -6,13 +6,11 @@ using UnityEngine.AddressableAssets;
 
 namespace Gameplay.DataHandling
 {
-    // TODO: Not sure if this can be a singleton, it would be nice to not destroy it on scene change.
-    //  But maybe that is something i should do for all singletons 
     public class ItemDatabaseManager : Singleton<ItemDatabaseManager>
     {
         public AssetLabelReference reference;
 
-        private readonly Dictionary<int, WeaponData> weaponDataDictionary = new();
+        private readonly Dictionary<int, WeaponData> _weaponDataDictionary = new();
 
         public override void Awake()
         {
@@ -22,12 +20,12 @@ namespace Gameplay.DataHandling
 
         private void OnDataLoaded(WeaponData weaponData)
         {
-            weaponDataDictionary.Add(weaponData.id, weaponData);
+            _weaponDataDictionary.Add(weaponData.id, weaponData);
         }
 
         public WeaponData GetWeaponData(int key)
         {
-            var success = weaponDataDictionary.TryGetValue(key, out var weaponData);
+            var success = _weaponDataDictionary.TryGetValue(key, out var weaponData);
             if (!success)
             {
                 throw new Exception("Weapon data not found for key: " + key);

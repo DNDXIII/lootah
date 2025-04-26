@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Gameplay.Shared
@@ -8,19 +9,36 @@ namespace Gameplay.Shared
         public UnityAction<float, GameObject> OnDamaged;
         public UnityAction<float> OnHealed;
         public UnityAction OnDie;
+        public UnityAction OnReset;
 
 
-        [Tooltip("Maximum amount of health")] public float maxHealth = 100f;
+        [Tooltip("Maximum amount of health")] [SerializeField]
+        private float maxHealth = 100f;
 
         private bool _isInvincible;
 
         public bool IsDead { get; private set; }
         protected float CurrentHealth { get; private set; }
+        public float MaxHealth => maxHealth;
         public float GetHealthRatio() => CurrentHealth / maxHealth;
 
         protected virtual void Start()
         {
             CurrentHealth = maxHealth;
+        }
+
+        public void SetMaxHealth(float newMaxHealth)
+        {
+            maxHealth = newMaxHealth;
+            Reset();
+        }
+
+        public void Reset()
+        {
+            CurrentHealth = maxHealth;
+            IsDead = false;
+            _isInvincible = false;
+            OnReset?.Invoke();
         }
 
         public void Heal(float healAmount)

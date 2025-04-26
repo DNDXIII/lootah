@@ -820,6 +820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRanged
       objectReference: {fileID: 0}
+    - target: {fileID: 6107562233036704090, guid: d126c0cada85d4645a9cc2d039d365b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1041,6 +1045,10 @@ PrefabInstance:
     - target: {fileID: 6107562233036704090, guid: 9c09955cdcb62124d98f51e7f8797a44, type: 3}
       propertyPath: m_Name
       value: BurstRangedEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107562233036704090, guid: 9c09955cdcb62124d98f51e7f8797a44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13745,6 +13753,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2000153535332611808, guid: 7facbabc107d3294293d4676803d293e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4884936553197249131, guid: 7facbabc107d3294293d4676803d293e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.84096
@@ -14325,6 +14337,10 @@ PrefabInstance:
       propertyPath: spawnDelay
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: enemyConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: fc3b7dfdbf28df741baeb1f974d605ea, type: 2}
     - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: enemyPrefab
       value: 
@@ -27670,6 +27686,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BurstRangedEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6107562233036704090, guid: 9c09955cdcb62124d98f51e7f8797a44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29005,6 +29025,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRanged (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6107562233036704090, guid: d126c0cada85d4645a9cc2d039d365b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29216,6 +29240,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
+      propertyPath: enemyConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: fe58a01ac2c65f940bf82a5ecd2e714f, type: 2}
+    - target: {fileID: 4496377599208216536, guid: 624585f9a6f9a1b44aac2483e07ad341, type: 3}
       propertyPath: enemyPrefab
       value: 
       objectReference: {fileID: 4285901979708434432, guid: e208bfb90f76a2b4a9c7c0e77bfcec7a, type: 3}
@@ -29420,6 +29448,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -31.19
       objectReference: {fileID: 0}
+    - target: {fileID: 9063076841531903354, guid: a86776b15dfb03944bd91c5c61b88486, type: 3}
+      propertyPath: enemyConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 4987ef06986baf348bc401e845c95767, type: 2}
     - target: {fileID: 9063076841531903354, guid: a86776b15dfb03944bd91c5c61b88486, type: 3}
       propertyPath: enemyPrefab
       value: 
@@ -32429,6 +32461,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeavyImp
       objectReference: {fileID: 0}
+    - target: {fileID: 6107562233036704090, guid: e208bfb90f76a2b4a9c7c0e77bfcec7a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33482,6 +33518,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 1088628927}
     m_Modifications:
     - target: {fileID: 1331454242418979279, guid: f2b5de6bf2238e24c947fb104dbcba3f, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331454242418979279, guid: f2b5de6bf2238e24c947fb104dbcba3f, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331454242418979279, guid: f2b5de6bf2238e24c947fb104dbcba3f, type: 3}
       propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5013246645627583940}
@@ -33489,6 +33533,22 @@ PrefabInstance:
       propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1856182486}
+    - target: {fileID: 1331454242418979279, guid: f2b5de6bf2238e24c947fb104dbcba3f, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331454242418979279, guid: f2b5de6bf2238e24c947fb104dbcba3f, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SpawnWave
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331454242418979279, guid: f2b5de6bf2238e24c947fb104dbcba3f, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Gameplay.Managers.EnemySpawnerManager.SequentialWaveSpawner, Gameplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331454242418979279, guid: f2b5de6bf2238e24c947fb104dbcba3f, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3832672935735938570, guid: f2b5de6bf2238e24c947fb104dbcba3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.5
@@ -36738,6 +36798,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeEnemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2000153535332611808, guid: 7facbabc107d3294293d4676803d293e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4884936553197249131, guid: 7facbabc107d3294293d4676803d293e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 42.303635
@@ -38417,6 +38481,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -31.19
       objectReference: {fileID: 0}
+    - target: {fileID: 7930785717039209008, guid: a86776b15dfb03944bd91c5c61b88486, type: 3}
+      propertyPath: enemyConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 8490b7121c4a92c43bf91c7f16b851e3, type: 2}
     - target: {fileID: 7930785717039209008, guid: a86776b15dfb03944bd91c5c61b88486, type: 3}
       propertyPath: enemyPrefab
       value: 
@@ -46395,6 +46463,10 @@ PrefabInstance:
     - target: {fileID: 2000153535332611808, guid: 7facbabc107d3294293d4676803d293e, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000153535332611808, guid: 7facbabc107d3294293d4676803d293e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4884936553197249131, guid: 7facbabc107d3294293d4676803d293e, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,5 +1,6 @@
 ﻿using Gameplay.Managers;
 using Gameplay.Player;
+using Gameplay.Shared;
 using Managers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ namespace UI
         [SerializeField] private Slider redBar; // Represents actual health
         [SerializeField] private Slider yellowBar; // Represents recoverable health
 
-        private RecoverablePlayerHealth _playerHealth;
+        private Health _playerHealth;
 
         private void Start()
         {
@@ -21,7 +22,7 @@ namespace UI
         private void Update()
         {
             redBar.value = _playerHealth.GetHealthRatio();
-            yellowBar.value = _playerHealth.GetHealthAndRecoverableHealthRatio();
+            yellowBar.value = _playerHealth.GetHealthRatio();
         }
     }
 }

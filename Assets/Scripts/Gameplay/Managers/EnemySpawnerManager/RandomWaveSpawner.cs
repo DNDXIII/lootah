@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Gameplay.Shared;
 using Managers;
 using TMPro;
@@ -31,11 +32,9 @@ namespace Gameplay.Managers.EnemySpawnerManager
             // Find all the children of the spawner
             for (var i = 0; i < transform.childCount; i++)
             {
-                if (transform.GetChild(i).TryGetComponent<WaveEnemySpawner>(out var waveSpawner))
-                {
-                    _waveEnemySpawners.Add(waveSpawner);
-                    waveSpawner.OnWaveEnd += OnWaveEnd;
-                }
+                if (!transform.GetChild(i).TryGetComponent<WaveEnemySpawner>(out var waveSpawner)) continue;
+                _waveEnemySpawners.Add(waveSpawner);
+                waveSpawner.OnWaveEnd += OnWaveEnd;
             }
 
             EventManager.AddListener<EnemyKillEvent>(OnEnemyKilled);
@@ -43,7 +42,7 @@ namespace Gameplay.Managers.EnemySpawnerManager
 
         private void Start()
         {
-            Invoke(nameof(SpawnWave), delayBeforeFirstWave);
+            SpawnAfterDelay(delayBeforeFirstWave).Forget();
         }
 
         private void OnEnemyKilled(EnemyKillEvent obj)
@@ -52,11 +51,17 @@ namespace Gameplay.Managers.EnemySpawnerManager
             enemiesLeftText.text = $"Enemies Left: {_enemyCount}";
         }
 
-        private void SpawnWave()
+        private async UniTaskVoid SpawnAfterDelay(float delay)
+        {
+            await UniTask.WaitForSeconds(delay);
+            SpawnWave().Forget();
+        }
+
+        private async UniTaskVoid SpawnWave()
         {
             // find a random wave spawner
             var waveToSpawn = _waveEnemySpawners[Random.Range(0, _waveEnemySpawners.Count)];
-            _enemyCount += waveToSpawn.SpawnWave();
+            _enemyCount += await waveToSpawn.SpawnWave();
             _waveCount++;
 
             waveText.text = $"Wave: {_waveCount}";
@@ -71,12 +76,16 @@ namespace Gameplay.Managers.EnemySpawnerManager
                 return;
             }
 
-            Invoke(nameof(SpawnWave), delayAfterWave);
+            SpawnAfterDelay(delayAfterWave).Forget();
         }
 
         private void OnDestroy()
         {
             EventManager.RemoveListener<EnemyKillEvent>(OnEnemyKilled);
+            foreach (var waveEnemySpawner in _waveEnemySpawners)
+            {
+                waveEnemySpawner.OnWaveEnd -= OnWaveEnd;
+            }
         }
     }
 }

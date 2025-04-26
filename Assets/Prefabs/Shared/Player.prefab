@@ -224,10 +224,10 @@ GameObject:
   - component: {fileID: 1116828630526022930}
   - component: {fileID: 3855740928580243574}
   - component: {fileID: 4085571715971403320}
-  - component: {fileID: 7487161028840770534}
-  - component: {fileID: 341064284281349145}
   - component: {fileID: 8197864463855151246}
   - component: {fileID: 4915896688199569369}
+  - component: {fileID: 2077576328841156455}
+  - component: {fileID: 4715907141065557352}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -451,36 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad47c8f0d4c452f82583d42ec8bb116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7487161028840770534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3173300361134158835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45b3c2219a7f49b0ae8dbf47bf2d2b71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  maxRecoverableHealth: 0
-  recoverableHealthDecayDelay: 5
---- !u!114 &341064284281349145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3173300361134158835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffcff486cc6440f8c2683919f672b0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageMultiplier: 1
-  health: {fileID: 7487161028840770534}
-  isCritical: 0
 --- !u!114 &8197864463855151246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +483,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aeac658214e467bb8dabee638536a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2077576328841156455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173300361134158835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffcff486cc6440f8c2683919f672b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1
+  health: {fileID: 4715907141065557352}
+  isCritical: 0
+--- !u!114 &4715907141065557352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173300361134158835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53310e935c24489b17a7efae012889e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &3261120539156824795
 GameObject:
   m_ObjectHideFlags: 0

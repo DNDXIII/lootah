@@ -2,10 +2,11 @@
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using DataHandling;
 using Shared;
 using UnityEngine;
 
-namespace DataHandling
+namespace Gameplay.DataHandling
 {
     public class SaveDataManager : Singleton<SaveDataManager>
     {

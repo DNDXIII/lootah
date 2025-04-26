@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +9,7 @@ namespace Gameplay.Managers.EnemySpawnerManager
     {
         [SerializeField] private float delayAfterWave = 1f;
 
-        [SerializeField] private bool startOnAwake = false;
+        [SerializeField] private bool startOnAwake;
         [SerializeField] private UnityEvent onWavesEnd;
 
         private int _currentWave;
@@ -39,7 +40,7 @@ namespace Gameplay.Managers.EnemySpawnerManager
         public void SpawnWave()
         {
             var waveToSpawn = _waveEnemySpawners[_currentWave];
-            waveToSpawn.SpawnWave();
+            waveToSpawn.SpawnWave().Forget();
             _currentWave++;
         }
 

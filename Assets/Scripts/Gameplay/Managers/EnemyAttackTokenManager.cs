@@ -89,7 +89,7 @@ namespace Gameplay.Managers
             _currentHeavyAttackTickets = Math.Min(_currentHeavyAttackTickets + 1, _maxHeavyAttackTickets);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             GameSettingsManager.Instance.OnGameDifficultyChanged -= OnGameDifficultyChanged;
         }

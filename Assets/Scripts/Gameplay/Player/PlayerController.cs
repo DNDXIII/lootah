@@ -7,7 +7,7 @@ using PrimeTween;
 
 namespace Gameplay.Player
 {
-    [RequireComponent(typeof(CharacterController), typeof(RecoverablePlayerHealth), typeof(Damageable))]
+    [RequireComponent(typeof(CharacterController), typeof(Health), typeof(Damageable))]
     public class PlayerController : MonoBehaviour
     {
         [Header("References")] [Tooltip("Reference to the main camera used for the player")]
@@ -68,7 +68,7 @@ namespace Gameplay.Player
 
         private Vector3 CharacterVelocity { get; set; }
         public bool IsGrounded { get; private set; }
-        public RecoverablePlayerHealth Health { get; private set; }
+        public Health Health { get; private set; }
         public Damageable Damageable { get; private set; }
         public int AvailableDashCount => _currentDashCount;
 
@@ -95,7 +95,7 @@ namespace Gameplay.Player
         {
             Application.targetFrameRate = 165;
 
-            Health = GetComponent<RecoverablePlayerHealth>();
+            Health = GetComponent<Health>();
             Damageable = GetComponent<Damageable>();
 
             _controller = GetComponent<CharacterController>();

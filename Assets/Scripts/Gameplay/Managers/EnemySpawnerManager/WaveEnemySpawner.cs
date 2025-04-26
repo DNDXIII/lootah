@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Gameplay.Managers.EnemySpawnerManager
@@ -11,36 +13,38 @@ namespace Gameplay.Managers.EnemySpawnerManager
         private int _activeSpawners;
         private int _enemyCount;
 
-
         private void Awake()
         {
             // Find all the children of the spawner
             for (var i = 0; i < transform.childCount; i++)
             {
-                if (transform.GetChild(i).TryGetComponent<EnemySpawner>(out var enemySpawner))
-                {
-                    _enemySpawners.Add(enemySpawner);
-                }
+                if (!transform.GetChild(i).TryGetComponent<EnemySpawner>(out var enemySpawner)) continue;
+                _enemySpawners.Add(enemySpawner);
+                enemySpawner.OnEnemiesKilled += OnSpawnerEnemiesKilled;
             }
         }
 
-        public int SpawnWave()
+        public async UniTask<int> SpawnWave()
         {
-            foreach (var enemySpawner in _enemySpawners)
-            {
-                enemySpawner.SpawnEnemies();
-                _activeSpawners++;
-                _enemyCount += enemySpawner.EnemyCount;
-                enemySpawner.OnEnemiesKilled += OnEnemyKilled;
-            }
+            var spawnTasks = Enumerable.Select(_enemySpawners, SpawnAndRegister).ToList();
+
+            var results = await UniTask.WhenAll(spawnTasks);
+
+            _enemyCount = results.Sum();
+            _activeSpawners = _enemySpawners.Count;
 
             return _enemyCount;
         }
 
-        private void OnEnemyKilled()
+        private static async UniTask<int> SpawnAndRegister(EnemySpawner enemySpawner)
+        {
+            return await enemySpawner.SpawnEnemies();
+        }
+
+        private void OnSpawnerEnemiesKilled()
         {
             _activeSpawners--;
-            if (_activeSpawners > 0) return;
+            if (_activeSpawners != 0) return;
 
             // All enemies from all spawners are dead
             OnWaveEnd?.Invoke();

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DataHandling;
+using Gameplay.DataHandling;
 using Gameplay.Items;
 using Gameplay.Player;
 using UnityEngine;
@@ -32,18 +32,7 @@ namespace Gameplay.Inventory
             else
             {
                 // We need to wait a frame to make sure the player weapons manager is set up
-                Invoke(nameof(SetupInitialWeapons), 1);
-            }
-        }
-
-
-        // TODO: REMOVE THIS
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-               
-                AddWeapon(defaultWeapon);
+                Invoke(nameof(SetupInitialWeapons), 2f);
             }
         }
 

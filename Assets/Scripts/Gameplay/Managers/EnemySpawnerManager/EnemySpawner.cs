@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using Gameplay.Enemy2;
 using Gameplay.Shared;
 using Managers;
 using Shared;
+using Shared.Utils;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 namespace Gameplay.Managers.EnemySpawnerManager
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] private Enemy2.Enemy enemyPrefab;
+        [SerializeField] private EnemyConfig enemyConfig;
         [SerializeField] private ParticleSystem spawnEffect;
         [SerializeField] private AudioClip spawnSfx;
 
@@ -19,7 +23,7 @@ namespace Gameplay.Managers.EnemySpawnerManager
         private float spawnDelay;
 
         [Tooltip("Should the enemies be spawned on start?")] [SerializeField]
-        private bool spawnOnStart = false;
+        private bool spawnOnStart;
 
         [Tooltip("Time to wait between each enemy spawn")] [SerializeField]
         private float delayBetweenSpawn = .1f;
@@ -30,14 +34,11 @@ namespace Gameplay.Managers.EnemySpawnerManager
         [Tooltip("If the object should be destroyed when all enemies are dead")] [SerializeField]
         private bool destroyOnDeath = true;
 
-        private readonly List<Enemy2.Enemy> _enemies = new();
         private Transform[] _spawnPoints;
 
-        // Kinda shit, but it works immediately after they are spawned.
-        //  If we used the count they might not have been all spawned yet
-        public int EnemyCount => _spawnPoints.Length;
-
         public Action OnEnemiesKilled;
+
+        public int EnemyCount { get; private set; }
 
         private void Awake()
         {
@@ -53,34 +54,35 @@ namespace Gameplay.Managers.EnemySpawnerManager
         {
             if (spawnOnStart)
             {
-                SpawnEnemies();
+                SpawnEnemies().Forget();
             }
         }
 
-
-        public void SpawnEnemies()
+        public void FireAndForgetSpawnEnemies()
         {
-            StartCoroutine(SpawnWithDelay());
+            SpawnEnemies().Forget();
         }
 
 
-        private IEnumerator SpawnWithDelay()
+        public async UniTask<int> SpawnEnemies()
         {
+            Preconditions.CheckNotNull(enemyConfig);
+
             // Sleep for a bit before spawning the enemies
-
-            yield return new WaitForSeconds(spawnDelay);
-
-            EventManager.AddListener<EnemyKillEvent>(OnEnemyKilled);
+            await UniTask.WaitForSeconds(spawnDelay);
 
             foreach (var point in _spawnPoints)
             {
-                var enemy = Instantiate(enemyPrefab, point.position, Quaternion.identity);
-                _enemies.Add(enemy);
+                var enemy = EnemyFactory.Instance.Create(enemyConfig, point.position);
+                EnemyCount += 1;
+                enemy.OnDie += OnEnemyKilled;
 
-                if (!spawnEffect) continue;
-                // spawn slightly above the ground
-                var spawnPosition = point.position + Vector3.up;
-                Instantiate(spawnEffect, spawnPosition, Quaternion.identity);
+                if (spawnEffect)
+                {
+                    // spawn slightly above the ground
+                    var spawnPosition = point.position + Vector3.up;
+                    Instantiate(spawnEffect, spawnPosition, Quaternion.identity);
+                }
 
                 if (spawnSfx)
                 {
@@ -89,28 +91,25 @@ namespace Gameplay.Managers.EnemySpawnerManager
                         1f);
                 }
 
-                yield return new WaitForSeconds(delayBetweenSpawn);
+                await UniTask.WaitForSeconds(delayBetweenSpawn);
             }
+
+            return EnemyCount;
         }
 
-        private void OnEnemyKilled(EnemyKillEvent obj)
+        private void OnEnemyKilled(Enemy2.Enemy enemy)
         {
-            var enemyController = obj.Enemy.GetComponent<Enemy2.Enemy>();
-            _enemies.Remove(enemyController);
+            EnemyCount--;
+            enemy.OnDie -= OnEnemyKilled;
 
-            if (_enemies.Count != 0) return;
+            if (EnemyCount > 0) return;
             OnEnemiesKilled?.Invoke();
-            onEnemiesDead.Invoke();
+            onEnemiesDead?.Invoke();
 
             if (destroyOnDeath)
             {
                 Destroy(gameObject);
             }
-        }
-
-        private void OnDestroy()
-        {
-            EventManager.RemoveListener<EnemyKillEvent>(OnEnemyKilled);
         }
     }
 }
