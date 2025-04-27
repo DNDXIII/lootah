@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 4
   itemName: Decent Shotgun
   description: Finally something decent
-  sprite: {fileID: -967934714, guid: aa36437f93ecb3e48800ef2d9f046fde, type: 3}
+  sprite: {fileID: 21300000, guid: 8868370e5f27f484c8942b6657542ed4, type: 3}
   prefab: {fileID: 4227961463163621887, guid: ac2ad8d1bb134fc4eadc48094b05d3f1, type: 3}
   damage: 1
   delayBetweenShots: 0.25

@@ -1,4 +1,5 @@
-﻿using Gameplay.Managers;
+﻿using System;
+using Gameplay.Managers;
 using Gameplay.Player;
 using Managers;
 using UnityEngine;
@@ -32,24 +33,13 @@ namespace Gameplay.Interactable
                     interactionDistance,
                     interactableLayer))
             {
-                // TODO: Refactor this to use just the interface dude
-                if (hit.collider.TryGetComponent(out Interactable interactable))
-                {
-                    InteractionTextManager.Instance.ShowInteractionText(interactable.GetInteractionText());
+                if (!hit.collider.TryGetComponent(out IInteractable interactable)) return;
+                
+                InteractionTextManager.Instance.ShowInteractionText(interactable.GetInteractionText());
 
-                    if (_playerInputHandler.GetInteractInput())
-                    {
-                        interactable.Interact();
-                    }
-                }
-                else if (hit.collider.TryGetComponent(out IInteractable iinteractable))
+                if (_playerInputHandler.GetInteractInputDown())
                 {
-                    InteractionTextManager.Instance.ShowInteractionText(iinteractable.GetInteractionText());
-
-                    if (_playerInputHandler.GetInteractInput())
-                    {
-                        iinteractable.Interact(ActorManager.Instance.Player);
-                    }
+                    interactable.Interact(ActorManager.Instance.Player);
                 }
             }
             else

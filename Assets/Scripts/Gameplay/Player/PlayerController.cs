@@ -67,10 +67,10 @@ namespace Gameplay.Player
         [Tooltip("Dash sound effect")] public AudioClip dashSfx;
 
         private Vector3 CharacterVelocity { get; set; }
-        public bool IsGrounded { get; private set; }
+        private bool IsGrounded { get; set; }
         public Health Health { get; private set; }
         public Damageable Damageable { get; private set; }
-        public int AvailableDashCount => _currentDashCount;
+        public int AvailableDashCount { get; private set; }
 
         private PlayerInputHandler _playerInputHandler;
         private CharacterController _controller;
@@ -82,7 +82,6 @@ namespace Gameplay.Player
         private float _currentJumpCount;
 
         private bool _isDashing;
-        private int _currentDashCount;
         private float _dashStartTime;
         private float _newDashTime;
         private Vector3 _dashDirection;
@@ -101,7 +100,7 @@ namespace Gameplay.Player
             _controller = GetComponent<CharacterController>();
             _playerInputHandler = GetComponent<PlayerInputHandler>();
             _currentJumpCount = maxJumpCount;
-            _currentDashCount = maxDashCount;
+            AvailableDashCount = maxDashCount;
         }
 
         private void Start()
@@ -139,12 +138,12 @@ namespace Gameplay.Player
 
         private void HandleDash()
         {
-            if (_currentDashCount < maxDashCount)
+            if (AvailableDashCount < maxDashCount)
             {
                 // if the dash cooldown time has passed, add a dash charge
                 if (Time.time >= _newDashTime)
                 {
-                    _currentDashCount++;
+                    AvailableDashCount++;
                     // Set the next cooldown time
                     _newDashTime = Time.time + dashCooldown;
                 }
@@ -152,7 +151,7 @@ namespace Gameplay.Player
 
             // If the player presses the dash key and has a dash charge, start the dash
             // If they are already dashing, queue the dash so it will be executed when the current dash ends
-            if ((_playerInputHandler.GetSprintInputDown() && _currentDashCount > 0) || _dashQueued)
+            if ((_playerInputHandler.GetSprintInputDown() && AvailableDashCount > 0) || _dashQueued)
             {
                 if (!_dashQueued && _isDashing)
                 {
@@ -190,12 +189,12 @@ namespace Gameplay.Player
 
             // if this is the first dash, set the dash start time
             // This way using another dash will not reset the dash time
-            if (_currentDashCount == maxDashCount)
+            if (AvailableDashCount == maxDashCount)
             {
                 _newDashTime = Time.time + dashCooldown;
             }
 
-            _currentDashCount--;
+            AvailableDashCount--;
         }
 
         private void GroundCheck()

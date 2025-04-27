@@ -1,4 +1,5 @@
-﻿using InputSystem;
+﻿using Gameplay.Managers;
+using InputSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ namespace Gameplay.Player
         private bool _fireInputWasHeld;
         private bool _jumpInputWasHeld;
         private bool _dashInputWasHeld;
+        private bool _interactInputWasHeld;
 
         private PlayerInputsManager _playerInputsManager;
 
@@ -22,6 +24,16 @@ namespace Gameplay.Player
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            lookSensitivity = GameSettingsManager.Instance.GetMouseSensitivity();
+
+            // Subscribe to GameSettingsManager events
+            GameSettingsManager.Instance.OnMouseSensitivityChanged += OnMouseSensitivityChanged;
+        }
+
+        private void OnMouseSensitivityChanged(float newValue)
+        {
+            lookSensitivity = newValue;
         }
 
         private void LateUpdate()
@@ -116,10 +128,15 @@ namespace Gameplay.Player
         {
             return CanProcessInput() && _playerInputsManager.aim;
         }
-
-        public bool GetInteractInput()
+        
+        private bool GetInteractInput()
         {
             return CanProcessInput() && _playerInputsManager.interact;
+        }
+        
+        public bool GetInteractInputDown()
+        {
+            return GetInteractInput() && !_interactInputWasHeld;
         }
     }
 }

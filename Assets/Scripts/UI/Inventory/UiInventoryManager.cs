@@ -29,7 +29,7 @@ namespace UI.Inventory
 
             if (Application.isEditor)
             {
-                Invoke(nameof(UpdateContentView), 1);
+                Invoke(nameof(UpdateContentView), 2f);
             }
             else
             {

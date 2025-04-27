@@ -32,8 +32,9 @@ namespace Gameplay.Managers
 
         private void InitializeTickets()
         {
-            _maxLightAttackTickets = lightAttackTickets.GetValue(GameSettingsManager.Instance.GameDifficulty);
-            _maxHeavyAttackTickets = heavyAttackTickets.GetValue(GameSettingsManager.Instance.GameDifficulty);
+            var difficulty = GameSettingsManager.Instance.GetGameDifficulty();
+            _maxLightAttackTickets = lightAttackTickets.GetValue(difficulty);
+            _maxHeavyAttackTickets = heavyAttackTickets.GetValue(difficulty);
             _currentLightAttackTickets = _maxLightAttackTickets;
             _currentHeavyAttackTickets = _maxHeavyAttackTickets;
         }

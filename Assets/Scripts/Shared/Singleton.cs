@@ -15,6 +15,7 @@ namespace Shared
                 instance = _instance;
                 return true;
             }
+
             instance = null;
             return false;
         }

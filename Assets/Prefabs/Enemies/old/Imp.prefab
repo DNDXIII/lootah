@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 1936728530174146255}
   - component: {fileID: 5817741786266564721}
   - component: {fileID: 5161553578955063456}
+  - component: {fileID: 631653693291290813}
   m_Layer: 3
   m_Name: Imp
   m_TagString: Enemy
@@ -345,9 +346,6 @@ MonoBehaviour:
   m_Graph: {fileID: 6304737720048704872, guid: 13c06667683e30b479b98d3222aeac27, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 2828233299990937821
-  - rid: 2828233299990938175
-  - rid: 2828233299990938376
-  - rid: 2828233299990938590
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -361,30 +359,6 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 3656906278614268684}
-    - rid: 2828233299990938175
-      type: {class: 'BlackboardVariable`1[[Gameplay.Shared.LineOfSightDetector, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 8811421509202149585
-          m_Value1: 10667299166918871319
-        Name: LoSDetector
-        m_Value: {fileID: 8592148117883700297}
-    - rid: 2828233299990938376
-      type: {class: 'BlackboardVariable`1[[Gameplay.Enemy2.Enemy, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 2781332483844283481
-          m_Value1: 14845348105532667841
-        Name: Enemy
-        m_Value: {fileID: 1493076856237195447}
-    - rid: 2828233299990938590
-      type: {class: 'BlackboardVariable`1[[Gameplay.Enemy2.EnemyAttack, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 13246726330815928399
-          m_Value1: 14560625546660264180
-        Name: LightAttack
-        m_Value: {fileID: 1936728530174146255}
 --- !u!114 &1936728530174146255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,15 +371,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2ebca182cb44e08b6921be0e193dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  attackSfx: {fileID: 0}
+  attackType: 0
   attackDamage: 0
   delayBeforeAttack: 0.5
   delayAfterAttack: 1
+  health: {fileID: 2216866029997326759}
   projectilePrefab: {fileID: 8860548218057244454, guid: 144e556da3d1e404bae6ecd03f7cbceb, type: 3}
   numberOfProjectiles: 1
   delayBetweenProjectiles: 0
   weaponMuzzle: {fileID: 1254052812652163971}
   weaponSpreadAngle: 0
-  attackType: 0
 --- !u!114 &5817741786266564721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +427,19 @@ MonoBehaviour:
     weight: 5
   - weaponData: {fileID: 11400000, guid: 2c75d066816ea674e927e10b8e721ff1, type: 2}
     weight: 1
+--- !u!114 &631653693291290813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3656906278614268684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5620515adf6b44a0acc8027d8be508bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &5696131390105825489
 GameObject:
   m_ObjectHideFlags: 0

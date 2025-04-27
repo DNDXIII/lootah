@@ -1,4 +1,5 @@
 ﻿using InputSystem;
+using UI.UIToolkit;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,7 +9,8 @@ namespace UI
     {
         [SerializeField] private GameObject inventoryMenu;
         [SerializeField] private GameObject hud;
-        [SerializeField] private PauseMenuUiToolkit pauseMenuUiToolkit;
+
+        [SerializeField] private UIManager uiManager;
 
         private PlayerInputsManager _playerInputsManager;
         private bool _isInventoryOpen;
@@ -30,9 +32,9 @@ namespace UI
         {
             hud.SetActive(true);
             inventoryMenu.SetActive(false);
-            pauseMenuUiToolkit.SetActive(false);
+            uiManager.gameObject.SetActive(false);
 
-            pauseMenuUiToolkit.OnResume += OnTogglePause;
+            MainMenuUIEvents.ResumeGame += OnTogglePause;
         }
 
         private void OnTogglePause()
@@ -41,14 +43,14 @@ namespace UI
             {
                 Pause();
                 _isPauseMenuOpen = true;
-                pauseMenuUiToolkit.SetActive(true);
+                uiManager.gameObject.SetActive(true);
                 hud.SetActive(false);
             }
 
             else if (_isPauseMenuOpen)
             {
                 hud.SetActive(true);
-                pauseMenuUiToolkit.SetActive(false);
+                uiManager.gameObject.SetActive(false);
                 _isPauseMenuOpen = false;
                 Resume();
             }
@@ -85,7 +87,7 @@ namespace UI
         private void Pause()
         {
             Time.timeScale = 0f;
-            _playerInputsManager.SetMouseLock(false);
+            _playerInputsManager?.SetMouseLock(false);
 
             // EventSystem.current.SetSelectedGameObject(mainMenuFirst);
         }
@@ -102,7 +104,7 @@ namespace UI
             // Disable the input actions to avoid issues when the object is inactive
             _inputManager.UI.Disable();
             // Unregister the event to avoid memory leaks
-            pauseMenuUiToolkit.OnResume -= OnTogglePause;
+            MainMenuUIEvents.ResumeGame -= OnTogglePause;
         }
     }
 }
