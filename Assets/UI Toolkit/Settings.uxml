@@ -9,14 +9,7 @@
                 <ui:Slider label="Sensitivity" value="42" high-value="2" name="MouseSensitivitySlider" fill="true" />
             </ui:Tab>
             <ui:Tab label="Graphics" view-data-key="GraphicsTab">
-                <ui:DropdownField label="Resolution" choices="1080 x 1920,1440 x 2560" name="ResolutionDropdown" class="mb-2" />
-                <ui:Toggle label="Fullscreen" class="mb-2" style="align-items: center; justify-content: flex-start; flex-direction: row; align-self: flex-start;" />
-                <ui:DropdownField label="Field of View&#10;" choices="1080 x 1920,1440 x 2560" name="DropdownField" class="mb-2" />
-            </ui:Tab>
-            <ui:Tab label="Audio" view-data-key="AudioTab">
-                <ui:SliderInt label="Master&#10;" value="42" high-value="100" class="mb-2" />
-                <ui:SliderInt label="Sound Effects" value="42" high-value="100" class="mb-2" />
-                <ui:SliderInt label="Music" value="42" high-value="100" class="mb-2" />
+                <ui:DropdownField label="Resolution" name="ResolutionDropdown" class="mb-2" />
             </ui:Tab>
         </ui:TabView>
     </ui:VisualElement>

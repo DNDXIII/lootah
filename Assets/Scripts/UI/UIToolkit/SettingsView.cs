@@ -43,7 +43,8 @@ namespace UI.UIToolkit
         {
             _mouseSensitivitySlider.RegisterValueChangedCallback(OnMouseSensitivityChanged);
             _gameDifficultyDropdown.RegisterValueChangedCallback(OnDifficultyChanged);
-            _resolutionDropdown.UnregisterValueChangedCallback(OnResolutionChanged);
+            _resolutionDropdown.RegisterValueChangedCallback(OnResolutionChanged);
+
         }
 
         public override void Dispose()
@@ -56,7 +57,8 @@ namespace UI.UIToolkit
         {
             _mouseSensitivitySlider.UnregisterValueChangedCallback(OnMouseSensitivityChanged);
             _gameDifficultyDropdown.UnregisterValueChangedCallback(OnDifficultyChanged);
-            _resolutionDropdown.RegisterValueChangedCallback(OnResolutionChanged);
+            _resolutionDropdown.UnregisterValueChangedCallback(OnResolutionChanged);
+
         }
 
         private static void OnDifficultyChanged(ChangeEvent<string> evt)
@@ -72,7 +74,10 @@ namespace UI.UIToolkit
 
         private static void OnResolutionChanged(ChangeEvent<string> evt)
         {
+            Debug.Log($"Resolution changed to: {evt.newValue}");
             string[] parts = evt.newValue.Split(' ')[0].Split('x');
+
+            Debug.Log($"Resolution parts: {parts[0]} {parts[1]}");
             if (parts.Length != 2) return;
 
             if (!int.TryParse(parts[0], out int width) || !int.TryParse(parts[1], out int height)) return;
